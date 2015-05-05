@@ -153,6 +153,7 @@
 				$banddropdownvalue = $this->addbandeventview->pickedBandDropdownValue();
 				
 				
+				
 				try{
 
 					if($this->addbandeventview->didUserPressAddBandToEventButton())

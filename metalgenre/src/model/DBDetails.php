@@ -4,6 +4,7 @@
 	require_once("BandList.php");
 	require_once("GenreList.php");
 	require_once("GradeList.php");
+	require_once("AlbumList.php");
 	require_once("EventBandList.php");
 	require_once("ShowEventList.php");
 	require_once("EditGradeList.php");
@@ -27,6 +28,13 @@
 		private static $grade = "grade";
 		private static $genre = "genre";
 		private static $band = "band";
+		private static $album = "album";
+		private static $albums = "albums";
+		private static $albumid = "albumid";
+		private static $albumname = "name";
+		private static $albumcontents = "contents";
+		private static $albumpersons = "persons";
+		private static $tblalbumband ="albumband";
 		private static $bandName = "name";
 		private static $biography = "biography";
 		private static $discography = "discography";
@@ -225,6 +233,34 @@
 
 		}
 
+		//Kontrollerar om livespelningen redan innehåller inmatade bandet. Om inte så returneras true annars kastas undantag.
+		public function checkIfBandExistsOnAlbum($albumdropdown, $banddropdown)
+		{
+
+				$db = $this -> connection();
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT ". self::$album .",". self::$band ." FROM `".$this->dbTable."` WHERE ". self::$album ." = ? AND ". self::$band ." = ?";
+				$params = array($albumdropdown,$banddropdown);
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetch();
+				
+				
+
+				
+				if ($result[self::$album] !== null && $result[self::$colband] !== null ) {
+
+					throw new Exception("Albumet innehåller redan det bandet du försöker lägga till");
+
+				}else{
+
+					return true;
+				}
+
+		}
+
 		//Kontrollerar om användaren redan satt betyg på den livespelningen med det bandet. Om inte så returneras true annars kastas undantag.
 		public function checkIfGradeExistOnEventBandUser($eventdropdown,$banddropdown,$username)
 		{
@@ -379,6 +415,31 @@
 				}
 		}
 
+		//Kontrollerar om livespelningen har fått sitt värde manipulerat i livespelningstabellen. Om inte så returneras true annars kastas undantag.
+		public function checkIfPickAlbumFromAlbumTableIsManipulated($pickedalbum)
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$albums;
+				$sql = "SELECT ". self::$albumname ." FROM `".$this->dbTable."` WHERE ". self::$albumname ." = ?";
+				$params = array($pickedalbum);
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetch();
+								
+
+				
+				if ($result[self::$albumname] == null) {
+
+					throw new Exception("Albumet existerar ej i kolumnen");
+
+				}else{
+
+					return true;
+				}
+		}
+
 		//Kontrollerar om bandet har fått sitt värde manipulerat i bandtabellen. Om inte så returneras true annars kastas undantag.
 		public function checkIfPickBandFromBandTableIsManipulated($pickedband)
 		{
@@ -448,6 +509,28 @@
 
 				}
 				return $bands;
+
+		}
+
+		public function fetchAllAlbums()
+		{
+
+				$db = $this -> connection();
+				$this->dbTable = self::$albums;
+				$sql = "SELECT * FROM `$this->dbTable`";
+				
+
+				$query = $db -> prepare($sql);
+				$query -> execute();
+
+				$result = $query -> fetchall();
+				$albums = new AlbumList();
+				foreach ($result as $albumdb) {
+					$album = new Album($albumdb[self::$albumname],$albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons]);
+					$albums->add($album);
+
+				}
+				return $albums;
 
 		}
 
@@ -594,6 +677,51 @@
 				return $showevents;
 		}
 
+		//Hämtar alla band,id,livespelningar,betyg och användarnamn och returnerar dessa.
+		public function fetchShowAllGenres()
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblGenre;
+				$sql = "SELECT * FROM `$this->dbTable`";
+				
+
+				$query = $db -> prepare($sql);
+				$query -> execute();
+
+				$result = $query -> fetchall();
+				
+				
+				$showgenres = new GenreList();
+				foreach ($result as $showgenredb) {
+					$showgenre = new Genre($showgenredb[self::$genrename], $showgenredb[self::$genreid]);
+					$showgenres->add($showgenre);
+
+				}
+				return $showgenres;
+		}
+
+		public function fetchGenre($genrename)
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblband;
+				$sql = "SELECT * FROM  `$this->dbTable` as bands INNER JOIN `eventband` as `ev` ON `ev`.`band` = `bands`.`name` where `ev`.`genre` = ?  ";
+				$params = array($genrename);
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+				$result = $query -> fetchall();
+				
+				
+				$bands = new BandList();
+				foreach ($result as $banddb) {
+					$band = new Band($banddb[self::$bandName], $banddb[self::$bandid], $banddb[self::$biography], $banddb[self::$discography]);
+					$bands->add($band);
+
+				}
+				return $bands;
+		}
+
+
+
 		//Hämtar alla betyg satta av inloggade användaren och returnerar dessa.
 		public function fetchEditGrades($loggedinUser)
 		{
@@ -727,8 +855,26 @@
 				}
 
 
+		}
 
+		//Lägger till bandet till genren.
+		public function addBandToAlbum($albumdropdown,$banddropdown)
+		{
 
+				try {
+					$db = $this -> connection();
+					$this->dbTable = self::$tblalbumband;
+
+					$sql = "INSERT INTO $this->dbTable (".self::$album.",". self::$band .") VALUES (?,?)";
+					$params = array($albumdropdown,$banddropdown);
+
+					$query = $db -> prepare($sql);
+					$query -> execute($params);
+					
+
+				} catch (\PDOException $e) {
+					die('An unknown error have occured.');
+				}
 
 
 		}

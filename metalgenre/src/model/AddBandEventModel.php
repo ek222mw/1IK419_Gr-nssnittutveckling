@@ -13,12 +13,12 @@
 
 
 		//Kontrollerar längden på det inmatade livespelningsvärdet. om giltigt returnera sant annars kasta undantag.	
-		public function CheckEventLength($event){
+		public function CheckGenreLength($genre){
 
-			if(mb_strlen($event) < 1 || mb_strlen($event) > 50 ){
+			if(mb_strlen($genre) < 1 || mb_strlen($genre) > 50 ){
 
 				// Kasta undantag.
-				throw new Exception("Spelningen har för få tecken eller för många tecken. Måste vara mellan 1-50 tecken");
+				throw new Exception("Genren har för få tecken eller för många tecken. Måste vara mellan 1-50 tecken");
 				
 			}
 			return true;

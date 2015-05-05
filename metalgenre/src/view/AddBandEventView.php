@@ -15,9 +15,13 @@
 		private $creategenre = "creategenre";
 		private $createeventbutton = "createeventbutton";
 		private $createbandeventbutton = "createbandeventbutton";
-		private $createbandbutton = "createbandbutton";
+		private $createbandalbumbutton = "createbandalbumbutton";
+		private $creategenrebutton = "creategenrebutton";
+		private $dropdownpickalbum = "dropdownpickalbum";
 		private $dropdownpickgenre = "dropdownpickgenre";
 		private $dropdownpickband = "dropdownpickband";
+		private $biography = "biography";
+		private $discography ="discography";
 
 		
 		public function __construct(){
@@ -36,6 +40,7 @@
 			return false;
 		}
 
+		
 		public function getBandDiscography(){
 
 			if(isset($_POST[$this->creatediscography]))
@@ -65,9 +70,9 @@
 		}
 
 		//Kontrollerar om användaren tryckt på lägga till livespelning knappen, returnera sant annars falskt.
-		public function didUserPressAddEventButton(){
+		public function didUserPressAddGenreButton(){
 
-			if(isset($_POST[$this->createeventbutton]))
+			if(isset($_POST[$this->creategenrebutton]))
 			{
 				return true;
 			}
@@ -79,6 +84,16 @@
 		public function didUserPressAddBandToEventButton()
 		{
 				if(isset($_POST[$this->createbandeventbutton]))
+				{
+					return true;
+				}
+			return false;
+
+		}
+
+		public function didUserPressAddBandToAlbumButton()
+		{
+				if(isset($_POST[$this->createbandalbumbutton]))
 				{
 					return true;
 				}
@@ -104,6 +119,15 @@
 			if(isset($_POST[$this->dropdownpickgenre]))
 			{
 				return $_POST[$this->dropdownpickgenre];
+			}
+			return false;
+		}
+
+		public function pickedAlbumDropdownValue(){
+
+			if(isset($_POST[$this->dropdownpickalbum]))
+			{
+				return $_POST[$this->dropdownpickalbum];
 			}
 			return false;
 		}
@@ -158,7 +182,7 @@
 							<legend>Lägga till ny genre - Skriv in genre</legend>
 							$this->message
 							<span style='white-space: nowrap'>Genre:</span><input type='text' name='$this->creategenre'><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandbutton'  value='Skapa'>
+							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->creategenrebutton'  value='Skapa'>
 						</fieldset>
 					</form>";
 
@@ -200,10 +224,59 @@
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
+
+							 	
 							 }
 							 
-							 $contentString .= "</select><br><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandeventbutton'  value='Lägg till'>
+							 $contentString .= "</select><br><br>";
+							$contentString .="<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandeventbutton'  value='Lägg till'>
+
+						</fieldset>
+					</form>";
+
+					$HTMLbody = "<div class='divaddbandevent'>
+					<h1>Lägg till band till vald genre</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString<br>
+					</div>";
+
+					$this->echoHTML($HTMLbody);
+			}
+
+
+			//Visar lägga till band till livespelning formuläret.
+			public function ShowAddBandToAlbumPage(AlbumList $albumlist, BandList $bandlist){
+
+			
+					
+				
+					$contentString = 
+					 "
+					<form method=post >
+						<fieldset class='fieldaddbandevent'>
+							<legend>Lägga till nytt band till album</legend>
+							$this->message
+							<span style='white-space: nowrap'>Album:</span><br>
+							 <select name='$this->dropdownpickalbum'>";
+							 foreach($albumlist->toArray() as $album)
+							 {
+							 	$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
+							 }
+							 
+							 $contentString .= "</select>
+							 <br>
+							<span style='white-space: nowrap'>Band:</span><br>
+							<select name='$this->dropdownpickband'>";
+							 foreach($bandlist->toArray() as $band)
+							 {
+							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
+
+							 	
+							 }
+							 
+							 $contentString .= "</select><br><br>";
+							$contentString .="<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandalbumbutton'  value='Lägg till'>
+
 						</fieldset>
 					</form>";
 
@@ -238,6 +311,11 @@
 			public function successfulAddBandToGenre()
 			{
 				$this->showMessage("Bandet har lagt tills i genren");
+			}
+
+			public function successfulAddBandToAlbum()
+			{
+				$this->showMessage("Albumet har kopplats till bandet");
 			}
 
 		

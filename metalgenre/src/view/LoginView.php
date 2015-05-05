@@ -26,7 +26,9 @@
 		private $repeatpassword = "repeatpassword";
 		private $addrating = "addrating";
 		private $addbandtoevent = "addbandtoevent";
+		private $addbandtoalbum = "addbandtoalbum";
 		private $addband = "addband";
+		private $showgenres = "showgenres";
 		private $deleterating = "deleterating";
 		
 		//Gör nya instanser av klasser.
@@ -48,6 +50,11 @@
 			return isset($_GET[$this->logout]);
 		}
 
+		public function didUserPressAddBandToAlbum()
+		{
+			return isset($_GET[$this->addbandtoalbum]);
+		}
+
 		//Kollar om användaren tryckt på register länken, returnerar sant annars falskt.
 		public function didUserPressRegister()
 		{
@@ -62,6 +69,13 @@
 
 			return isset($_GET[$this->addband]);
 		}
+
+		public function didUserPressShowGenre()
+		{
+
+			return isset($_GET[$this->showgenres]);
+		}
+
 
 		//Kollar om användaren tryckt på visar livespelningar med band samt betyg länken i menyn, returnerar sant annars falskt.
 		public function didUserPressShowAllEvents()
@@ -205,14 +219,18 @@
 				$HTMLbody = "<div class='divmenu'>
 				<h2>$this->loginStatus</h2>
 				$contentString<br>
+				<ul>
 				<h2>Meny</h2>
-				<p><a href='?addband'>Lägg till band</a></p>
-				<p><a href='?addgenre'>Lägg till genre</a></p>
-				<p><a href='?addbandtoevent'>Lägg till band till genre</a></p>
-				<p><a href='?addrating'>Lägg till betyg till livespelning med angivet band</a></p>
-				<p><a href='?editrating'>Editera betyg till livespelning med angivet band</a></p>
-				<p><a href='?deleterating'>Ta bort betyg till livespelning med angivet band</a></p>
-				<p><a href='?showevents'>Visa livespelningar med band samt betyg</a></p>
+				<li><p><a href='?addband'>Lägg till band</a></p></li>
+				<li><p><a href='?addgenre'>Lägg till genre</a></p></li>
+				<li><p><a href='?addbandtoevent'>Lägg till band till genre</a></p></li>
+				<li><p><a href='?addbandtoalbum'>Lägg till band till album</a></p></li>
+				<li><p><a href='?showgenres'>Visa genres</a></p></li>
+				<li><p><a href='?addrating'>Lägg till betyg till livespelning med angivet band</a></p></li>
+				<li><p><a href='?editrating'>Editera betyg till livespelning med angivet band</a></p></li>
+				<li><p><a href='?deleterating'>Ta bort betyg till livespelning med angivet band</a></p></li>
+				<li><p><a href='?showevents'>Visa livespelningar med band samt betyg</a></p></li>
+				</ul>
 				</div>";
 			}
 

@@ -31,6 +31,13 @@
 			return false;
 		}
 
+		public function didUserPressGenre(){
+			if(isset($_GET['genrename'])){
+				return true;
+			}
+			return false;
+		}
+
 		//Om satt så returnera valt betyg i dropdownen annars returnera falskt.
 		public function pickedGradeDropdownValue(){
 
@@ -41,6 +48,11 @@
 			return false;
 
 		}
+
+		public function getGenreID(){
+			return $_GET['genrename'];
+		}
+
 
 		//Om användaren tryckt på livespelningsknappen i betygsformuläret så returnera true annars falskt.
 		public function didUserPressChooseGradeEvent()
@@ -178,6 +190,67 @@
 
 
 			}
+
+			public function ShowAllGenres(GenreList $showgenrelist)
+			{
+				
+					$contentString ="<form method=post>";
+	
+					foreach($showgenrelist->toArray() as $genre)
+					{
+							 	
+						$contentString .= "<fieldset class='fieldshowall'><span class='spangradient'  style='white-space: nowrap'>Genre</span><br>";
+						$contentString.= "<p class='pgradient'>".$genre->getName()."</p>";
+						$contentString .= "<a href='?showgenres&genrename=".$genre->getName()."'>Show Bands</a> ";
+						$contentString .= "</fieldset>";
+					}
+							 
+					$contentString .= "</form>";
+
+					
+
+					$HTMLbody = "<div class='divshowall'>
+					<h1>Visar alla genres</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString</div>";
+
+					$this->echoHTML($HTMLbody);
+
+
+			}
+
+			public function ShowGenre(BandList $showbandlist, $genre)
+			{
+				
+					$contentString ="<form method=post >";
+	
+					foreach($showbandlist->toArray() as $band)
+					{
+							 	
+						$contentString .= "<fieldset class='fieldshowall'><h3>Band</h3>";
+							
+						$contentString.= "<p class='pgradient'>".$band->getName()."</p>";
+						$contentString.= "<h3>Biografi</h3>";
+						$contentString.= "<p class='pgradient'>".$band->getBioGraphy()."</p>";
+						$contentString.="<h3>Discografi</h3>";
+						$contentString.= "<p class='pgradient'>".$band->getDiscoGraphy()."</p>";
+						$contentString .= "</fieldset>";
+					}
+							 
+					$contentString .= "</form>";
+
+					
+
+					$HTMLbody = "<div class='divshowall'>
+					<h1>$genre</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString</div>";
+
+					$this->echoHTML($HTMLbody);
+
+
+			}
+
 
 			//Lägger in, inparameterns sträng i privata variabeln message som sedan skickas till formulären.
 			public function showMessage($message)

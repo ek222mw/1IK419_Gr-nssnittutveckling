@@ -9,6 +9,9 @@
 	require_once("ShowEventController.php");
 	require_once("EditRatingController.php");
 	require_once("DeleteRatingController.php");
+	require_once("ShowGenreController.php");
+	require_once("AddBandToAlbumController.php");
+	
 	
 	
 	class NavigationController{
@@ -25,7 +28,8 @@
 
 			//Väljer vilken controller som ska användas beroende på indata, t.ex. knappar och länkar.
 			if(!$this->view->didUserPressAddBand() && !$this->view->didUserPressAddRating() && !$this->view->didUserPressAddBandToEvent() && !$this->view->didUserPressAddGenre() && 
-				!$this->view->didUserPressShowAllEvents() && !$this->view->didUserPressEditGrades() && !$this->view->didUserPressDeleteGrade())
+				!$this->view->didUserPressShowAllEvents() && !$this->view->didUserPressEditGrades() && !$this->view->didUserPressDeleteGrade() && !$this->view->didUserPressShowGenre()
+				&& !$this->view->didUserPressAddBandToAlbum())
 			{
 				$loginC = new LoginController();
 				$htmlBodyLogin = $loginC->doHTMLBody();
@@ -55,6 +59,14 @@
 			else if($this->view->didUserPressDeleteGrade() && $this->model->checkLoginStatus())
 			{
 				$DeleteRatingC = new DeleteRatingController();
+			}
+			else if($this->view->didUserPressShowGenre() && $this->model->checkLoginStatus())
+			{
+				$ShowGenreC = new ShowGenreController();
+			}
+			else if($this->view->didUserPressAddBandToAlbum() &&  $this->model->checkLoginStatus())
+			{
+				$addbandtoalbumC = new AddBandToAlbumController();
 			}
 			else{
 
