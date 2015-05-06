@@ -38,6 +38,13 @@
 			return false;
 		}
 
+		public function didUserPressAlbum(){
+			if(isset($_GET['albumname'])){
+				return true;
+			}
+			return false;
+		}
+
 		//Om satt så returnera valt betyg i dropdownen annars returnera falskt.
 		public function pickedGradeDropdownValue(){
 
@@ -51,6 +58,10 @@
 
 		public function getGenreID(){
 			return $_GET['genrename'];
+		}
+
+		public function getAlbumID(){
+			return $_GET['albumname'];
 		}
 
 
@@ -76,28 +87,28 @@
 		}
 
 		//Visar lägga till betyg formuläret.
-		public function ShowAddRatingPage(EventBandList $eventbandlist){
+		public function ShowAddRatingPage(AlbumBandList $albumbandlist){
 
 					
 	
 					$contentString = "
 					<form method=post ><fieldset class='fieldaddrating'>
-					<legend>Lägga till nytt betyg till spelning med följande band</legend>
+					<legend>Lägga till nytt betyg till album med följande band</legend>
 					$this->message
-					<span style='white-space: nowrap'>Livespelning:</span>
-					<select name='dropdownpickevent'>";
+					<span style='white-space: nowrap'>Album:</span>
+					<select name='dropdownpickalbum'>";
 
-					foreach($eventbandlist->toArray() as $event)
+					foreach($albumbandlist->toArray() as $album)
 					{
-						$contentString.= "<option value='". $event->getName()."'>".$event->getName()."</option>";
+						$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
 					}
 							 
 					$contentString .= "</select>";
-					$contentString .= "<input type='submit' name='$this->chooseeventbutton'  value='Välj livespelning'>";		 
+					$contentString .= "<input type='submit' name='$this->chooseeventbutton'  value='Välj album'>";		 
 					$contentString .= "</fieldset></form>";
 
 					$HTMLbody = "<div class='divaddrating'>
-					<h1>Lägg till betyg till vald spelning med band</h1>
+					<h1>Lägg till betyg till valt album med band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					$contentString<br>
 					</div>";
@@ -107,7 +118,7 @@
 			}
 
 			//Visar vald livespelning för att lägga till betyg till livespelningar med band formulär.
-			public function ShowChosenEventRatingPage(EventBandList $eventbandlist, EventBandList $bandeventlist, GradeList $gradelist){
+			public function ShowChosenEventRatingPage(AlbumBandList $albumbandlist, AlbumBandList $bandeventlist, GradeList $gradelist){
 
 			
 			
@@ -119,9 +130,9 @@
 					<span style='white-space: nowrap'>Livespelning:</span><br>
 					<select name='dropdownpickevent'>";
 
-					foreach($eventbandlist->toArray() as $event)
+					foreach($albumbandlist->toArray() as $album)
 					{
-						$contentString.= "<option value='". $event->getName()."'>".$event->getName()."</option>";
+						$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
 					}
 							 
 					$contentString .= "</select>
@@ -233,7 +244,8 @@
 						$contentString.= "<h3>Biografi</h3>";
 						$contentString.= "<p class='pgradient'>".$band->getBioGraphy()."</p>";
 						$contentString.="<h3>Discografi</h3>";
-						$contentString.= "<p class='pgradient'>".$band->getDiscoGraphy()."</p>";
+						$contentString.= "<p class='pgradient'>".$band->getDiscoGraphy()."</p><br>";
+						$contentString .= "<a href='?showgenres&albumname=".$band->getName()."'>Show Albums</a> ";
 						$contentString .= "</fieldset>";
 					}
 							 
@@ -243,6 +255,38 @@
 
 					$HTMLbody = "<div class='divshowall'>
 					<h1>$genre</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString</div>";
+
+					$this->echoHTML($HTMLbody);
+
+
+			}
+
+			public function ShowAlbum(AlbumList $showalbumlist, $band)
+			{
+				
+					$contentString ="<form method=post >";
+	
+					foreach($showalbumlist->toArray() as $album)
+					{
+							 	
+						$contentString .= "<fieldset class='fieldshowall'><h3>Album</h3>";
+							
+						$contentString.= "<p class='pgradient'>".$album->getName()."</p>";
+						$contentString.= "<h3>Innehåll</h3>";
+						$contentString.= "<p class='pgradient'>".$album->getContents()."</p>";
+						$contentString.="<h3>Personer</h3>";
+						$contentString.= "<p class='pgradient'>".$album->getPersons()."</p>";
+						$contentString .= "</fieldset>";
+					}
+							 
+					$contentString .= "</form>";
+
+					
+
+					$HTMLbody = "<div class='divshowall'>
+					<h1>$band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					$contentString</div>";
 

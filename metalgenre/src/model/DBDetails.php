@@ -9,6 +9,7 @@
 	require_once("ShowEventList.php");
 	require_once("EditGradeList.php");
 	require_once("DeleteGradeList.php");
+	require_once("AlbumBandList.php");
 
 	class DBDetails{
 
@@ -340,12 +341,12 @@
 		}
 
 		//Kontrollerar om vald livespelnings värde har blivit manipulerad.Om inte så returneras true annars kastas undantag.
-		public function checkIfPickEventManipulated($pickedevent)
+		public function checkIfPickAlbumManipulated($pickedalbum)
 		{
 				$db = $this -> connection();
-				$this->dbTable = self::$tblEventBand;
-				$sql = "SELECT ". self::$event ." FROM `".$this->dbTable."` WHERE ". self::$event ." = ?";
-				$params = array($pickedevent);
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT ". self::$album ." FROM `".$this->dbTable."` WHERE ". self::$album ." = ?";
+				$params = array($pickedalbum);
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -354,9 +355,9 @@
 								
 
 				
-				if ($result[self::$colevent] == null) {
+				if ($result[self::$album] == null) {
 
-					throw new Exception("Livespelningen existerar ej i kolumnen");
+					throw new Exception("Albumet existerar ej i kolumnen");
 
 				}else{
 
@@ -535,26 +536,26 @@
 		}
 
 		//Hämtar alla livespelningar med band från databasen och returner dessa.
-		public function fetchAllEventWithBands()
+		public function fetchAllAlbumsWithBands()
 		{
 
 
 				$db = $this -> connection();
-				$this->dbTable = self::$tblEventBand;
-				$sql = "SELECT * FROM `$this->dbTable` GROUP BY ". self::$event ."";
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT * FROM `$this->dbTable` GROUP BY ". self::$album ."";
 				
 
 				$query = $db -> prepare($sql);
 				$query -> execute();
 
 				$result = $query -> fetchall();
-				$eventbands = new EventBandList();
-				foreach ($result as $eventbanddb) {
-					$eventband = new EventBand($eventbanddb[self::$event], $eventbanddb[self::$id]);
-					$eventbands->add($eventband);
+				$albumbands = new AlbumBandList();
+				foreach ($result as $albumbanddb) {
+					$albumband = new AlbumBand($albumbanddb[self::$album], $albumbanddb[self::$id]);
+					$albumbands->add($albumband);
 
 				}
-				return $eventbands;
+				return $albumbands;
 
 
 
@@ -585,48 +586,48 @@
 		}
 
 		//Hämtar alla band tillhörandes vald livespelning och returnerar dessa.
-		public function fetchChosenBandsInEventDropdown($eventdropdown)
+		public function fetchChosenBandsInAlbumDropdown($albumdropdown)
 		{
 				$db = $this -> connection();
-				$this->dbTable = self::$tblEventBand;
-				$sql = "SELECT * FROM `$this->dbTable` WHERE ". self::$event ." = ? ";
-				$params = array($eventdropdown);
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT * FROM `$this->dbTable` WHERE ". self::$album ." = ? ";
+				$params = array($albumdropdown);
 				
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
 
 				$result = $query -> fetchall();
-				$eventbands = new EventBandList();
-				foreach ($result as $eventbanddb) {
-					$eventband = new EventBand($eventbanddb[self::$band], $eventbanddb[self::$id]);
-					$eventbands->add($eventband);
+				$albumbands = new AlbumBandList();
+				foreach ($result as $albumbanddb) {
+					$albumband = new AlbumBand($albumbanddb[self::$band], $albumbanddb[self::$id]);
+					$albumbands->add($albumband);
 
 				}
-				return $eventbands;
+				return $albumbands;
 
 		}
 
 		//Hämtar endast vald livespelning från livespelningskolumnen i databasen och returnerar dessa.
-		public function fetchChosenEventInEventDropDown($eventdropdown)
+		public function fetchChosenAlbumInAlbumDropDown($albumdropdown)
 		{
 				$db = $this -> connection();
-				$this->dbTable = self::$tblEventBand;
-				$sql = "SELECT * FROM `$this->dbTable` WHERE ". self::$event ." = ? GROUP BY ". self::$event ." ";
-				$params = array($eventdropdown);
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT * FROM `$this->dbTable` WHERE ". self::$album ." = ? GROUP BY ". self::$album ." ";
+				$params = array($albumdropdown);
 				
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
 
 				$result = $query -> fetchall();
-				$eventbands = new EventBandList();
-				foreach ($result as $eventbanddb) {
-					$eventband = new EventBand($eventbanddb[self::$event], $eventbanddb[self::$id]);
-					$eventbands->add($eventband);
+				$albumbands = new AlbumBandList();
+				foreach ($result as $albumbanddb) {
+					$albumband = new AlbumBand($albumbanddb[self::$album], $albumbanddb[self::$id]);
+					$albumbands->add($albumband);
 
 				}
-				return $eventbands;
+				return $albumbands;
 
 		}
 
@@ -718,6 +719,26 @@
 
 				}
 				return $bands;
+		}
+
+		public function fetchBand($bandname)
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$albums;
+				$sql = "SELECT * FROM  `$this->dbTable` as album INNER JOIN `albumband` as `ab` ON `ab`.`album` = `album`.`name` where `ab`.`band` = ?  ";
+				$params = array($bandname);
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+				$result = $query -> fetchall();
+				
+				
+				$albums = new AlbumList();
+				foreach ($result as $albumdb) {
+					$album = new Album($albumdb[self::$albumname], $albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons]);
+					$albums->add($album);
+
+				}
+				return $albums;
 		}
 
 

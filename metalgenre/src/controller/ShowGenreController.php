@@ -28,8 +28,9 @@
 		//anropar vilken vy som ska visas.
 		public function doHTMLBody()
 		{
-			if($this->view->didUserPressShowGenre() && !$this->addratingview->didUserPressGenre())
+			if($this->view->didUserPressShowGenre() && !$this->addratingview->didUserPressGenre() && !$this->addratingview->didUserPressAlbum())
 			{
+				
 				$showGenres = $this->db->fetchShowAllGenres();
 
 				$this->addratingview->ShowAllGenres($showGenres);
@@ -41,6 +42,13 @@
 				$genrename = $this->addratingview->getGenreID();
 				$showBand = $this->db->fetchGenre($genrename);
 				$this->addratingview->ShowGenre($showBand, $genrename);
+			}
+			else if($this->addratingview->didUserPressAlbum())
+			{
+				
+				$albumname = $this->addratingview->getAlbumID();
+				$showAlbum = $this->db->fetchBand($albumname);
+				$this->addratingview->ShowAlbum($showAlbum,$albumname);
 			}
 
 

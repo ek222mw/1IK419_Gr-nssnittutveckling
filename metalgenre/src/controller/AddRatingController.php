@@ -38,7 +38,7 @@
 			if($this->loginview->didUserPressAddRating() && $this->loginmodel->checkLoginStatus())
 			{
 				//Variabler som innehåller funktionsanrop istället för hela funktionsanrop i koden. Gör det lättare att läsa koden.
-				$eventdropdownvalue = $this->addbandeventview->pickedEventDropdownValue();
+				$albumdropdownvalue = $this->addbandeventview->pickedAlbumDropdownValue();
 				$banddropdownvalue = $this->addbandeventview->pickedBandDropdownValue();
 				$gradedropdownvalue = $this->addratingview->pickedGradeDropdownValue();
 				$loggedinUser = $this->loginmodel->getLoggedInUser();
@@ -88,12 +88,12 @@
 		{
 				
 				//Variabler som innehåller funktionsanrop istället för hela funktionsanrop i koden. Gör det lättare att läsa koden
-				$events = $this->db->fetchAllEventWithBands();
+				$albums = $this->db->fetchAllAlbumsWithBands();
 				$bands = $this->db->fetchAllBandsWithEvent();
 				$grades = $this->db->fetchAllGrades();
-				$eventdropdownvalue = $this->addbandeventview->pickedEventDropdownValue();
-				$chosenband = $this->db->fetchChosenBandsInEventDropdown($eventdropdownvalue);
-				$chosenevent = $this->db->fetchChosenEventInEventDropDown($eventdropdownvalue);
+				$albumdropdownvalue = $this->addbandeventview->pickedAlbumDropdownValue();
+				$chosenband = $this->db->fetchChosenBandsInAlbumDropdown($albumdropdownvalue);
+				$chosenalbum = $this->db->fetchChosenAlbumInAlbumDropDown($albumdropdownvalue);
 				
 
 				try
@@ -101,24 +101,24 @@
 					if(!$this->addratingview->didUserPressChooseGradeEvent() && !$this->addratingview->didUserPressChooseOtherGradeEvent()) 
 					{
 						
-						$this->addratingview->ShowAddRatingPage($events);
+						$this->addratingview->ShowAddRatingPage($albums);
 						
 					}
 
-					if($this->addratingview->didUserPressChooseGradeEvent() && !$this->addratingview->didUserPressChooseOtherGradeEvent() && $this->db->checkIfPickEventManipulated($eventdropdownvalue))
+					if($this->addratingview->didUserPressChooseGradeEvent() && !$this->addratingview->didUserPressChooseOtherGradeEvent() && $this->db->checkIfPickAlbumManipulated($albumdropdownvalue))
 					{
-						$this->addratingview->ShowChosenEventRatingPage($chosenevent,$chosenband,$grades);
+						$this->addratingview->ShowChosenEventRatingPage($chosenalbum,$chosenband,$grades);
 					}
 
 					if($this->addratingview->didUserPressChooseOtherGradeEvent())
 					{
-						$this->addratingview->ShowAddRatingPage($events);
+						$this->addratingview->ShowAddRatingPage($albums);
 					}
 				}
 				catch(Exception $e)
 				{
 					$this->addratingview->showMessage($e->getMessage());
-					$this->addratingview->ShowAddRatingPage($events);
+					$this->addratingview->ShowAddRatingPage($genres);
 				}
 
 
