@@ -46,9 +46,10 @@
 			else if($this->addratingview->didUserPressAlbum())
 			{
 				
-				$albumname = $this->addratingview->getAlbumID();
-				$showAlbum = $this->db->fetchBand($albumname);
-				$this->addratingview->ShowAlbum($showAlbum,$albumname);
+				$bandname = $this->addratingview->getAlbumID();
+				$showAlbum = $this->db->fetchBand($bandname);
+				
+				$this->addratingview->ShowAlbum($showAlbum,$bandname);
 			}
 
 

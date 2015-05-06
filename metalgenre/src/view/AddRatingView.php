@@ -1,6 +1,8 @@
 <?php
 
 	require_once("common/HTMLView.php");
+	require_once("./src/model/DBDetails.php");
+
 	
 	
 	//Ärver HTMLView.
@@ -8,6 +10,7 @@
 
 		
 		private $message = "";
+		private $db;
 		
 
 		private $creategradebutton = "creategradebutton";
@@ -15,10 +18,11 @@
 		private $chooseeventbutton = "chooseeventbutton";
 		private $chooseothereventbutton = "chooseothereventbutton";
 
+
 		
 		public function __construct(){
 
-				
+				$this->db = new DBDetails();
 		}
 
 		//kontrollerar om användaren tryckt på lägga till betyg knappen, returnera true annars falskt.
@@ -87,7 +91,7 @@
 		}
 
 		//Visar lägga till betyg formuläret.
-		public function ShowAddRatingPage(AlbumBandList $albumbandlist){
+		public function ShowAddRatingPage(AlbumBandList $albumbandlist, GradeList $gradelist){
 
 					
 	
@@ -103,8 +107,17 @@
 						$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
 					}
 							 
-					$contentString .= "</select>";
-					$contentString .= "<input type='submit' name='$this->chooseeventbutton'  value='Välj album'>";		 
+					$contentString .= "</select><br>";
+					$contentString .= "<span style='white-space: nowrap'>Betyg:</span>
+					<select name='$this->dropdownpickgrade'>";
+
+					foreach($gradelist->toArray() as $grade)
+					{
+						$contentString.= "<option value='". $grade->getGrade()."'>".$grade->getGrade()."</option>";
+					}
+							 
+					$contentString .= "</select><br>";
+					$contentString .= "Skicka: <input type='submit' name='$this->creategradebutton'  value='Lägg till Betyg'>";		 
 					$contentString .= "</fieldset></form>";
 
 					$HTMLbody = "<div class='divaddrating'>
@@ -169,18 +182,16 @@
 			}
 
 			//Visar samlingssidan för livespelningar med band, användare och betyg.
-			public function ShowAllEventsWithBandGrades(ShowEventList $showeventlist)
+			public function ShowAllAlbumsWithGrades(ShowEventList $showeventlist)
 			{
 				
-					$contentString ="<form method=post ><h3>Visar Alla event</h3>";
+					$contentString ="<form method=post >";
 	
 					foreach($showeventlist->toArray() as $event)
 					{
 							 	
-						$contentString .= "<fieldset class='fieldshowall'><span class='spangradient'  style='white-space: nowrap'>Livespelning:</span>";
-						$contentString.= "<p class='pgradient'>".$event->getEvent()."</p>";
-						$contentString .= "<span class='spangradient' style='white-space: nowrap'>Band:<span>";
-						$contentString.= "<p class='pgradient'>".$event->getBand()."</p>";
+						$contentString .= "<fieldset class='fieldshowall'><span class='spangradient'  style='white-space: nowrap'>Album:</span>";
+						$contentString.= "<p class='pgradient'>".$event->getAlbum()."</p>";
 						$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
 						$contentString.= "<p class='pgradient'>".$event->getGrade()."</p>";
 						$contentString .= "<span class='spangradient' style='white-space: nowrap'>Användare:</span>";
@@ -193,7 +204,7 @@
 					
 
 					$HTMLbody = "<div class='divshowall'>
-					<h1>Visar alla events med band och betyg</h1>
+					<h1>Visar alla album med betyg</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					$contentString</div>";
 
@@ -267,12 +278,20 @@
 			{
 				
 					$contentString ="<form method=post >";
-	
+					
+				
 					foreach($showalbumlist->toArray() as $album)
-					{
-							 	
-						$contentString .= "<fieldset class='fieldshowall'><h3>Album</h3>";
+					{	
+						$grade = $this->db->fetchShowGrade($album->getName());
+						
 							
+						$contentString .= "<fieldset class='fieldshowall'><h3>Album</h3>";
+						$contentString.= "<h3>Betyg</h3>";
+						foreach ($grade as $value) {
+							$contentString.= "<p class='pgradient'>".$value[0]."</p>";
+						}
+						
+						$contentString.= "<h3>Album</h3>";
 						$contentString.= "<p class='pgradient'>".$album->getName()."</p>";
 						$contentString.= "<h3>Innehåll</h3>";
 						$contentString.= "<p class='pgradient'>".$album->getContents()."</p>";

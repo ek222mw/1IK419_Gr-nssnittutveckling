@@ -29,13 +29,13 @@
 			//Väljer vilken controller som ska användas beroende på indata, t.ex. knappar och länkar.
 			if(!$this->view->didUserPressAddBand() && !$this->view->didUserPressAddRating() && !$this->view->didUserPressAddBandToEvent() && !$this->view->didUserPressAddGenre() && 
 				!$this->view->didUserPressShowAllEvents() && !$this->view->didUserPressEditGrades() && !$this->view->didUserPressDeleteGrade() && !$this->view->didUserPressShowGenre()
-				&& !$this->view->didUserPressAddBandToAlbum())
+				&& !$this->view->didUserPressAddBandToAlbum() && !$this->view->didUserPressAddAlbum())
 			{
 				$loginC = new LoginController();
 				$htmlBodyLogin = $loginC->doHTMLBody();
 			}
 			
-			else if(($this->view->didUserPressAddBand() || $this->view->didUserPressAddBandToEvent() || $this->view->didUserPressAddGenre()) && $this->model->checkLoginStatus())
+			else if(($this->view->didUserPressAddBand() || $this->view->didUserPressAddBandToEvent() || $this->view->didUserPressAddGenre() || $this->view->didUserPressAddAlbum()) && $this->model->checkLoginStatus())
 			{
 				$AddEventBandC = new AddBandEventController();
 				

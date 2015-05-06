@@ -85,10 +85,8 @@
 			$contentString .=  "<form method=post >";
 			$contentString .= "
 			<fieldset class='fieldeditrating'><legend>Editera betyg</legend><br>
-			<span class='spangradient' style='white-space: nowrap'>LiveSpelning:</span>";
-			$contentString.= "<p class='pgradient'>".$grade->getEvent()."</p>";
-			$contentString .= "<span class='spangradient' style='white-space: nowrap'>Band:</span>";
-			$contentString.="<p class='pgradient'>".$grade->getBand()."</p>";
+			<span class='spangradient' style='white-space: nowrap'>Album:</span>";
+			$contentString.= "<p class='pgradient'>".$grade->getAlbum()."</p>";
 			$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
 			$contentString.= "<p class='pgradient'>".$grade->getGrade()."</p>"; 
 			$contentString.= "<input type='hidden' name='$this->pickededitid' value='". $grade->getID() ."'>";
@@ -123,11 +121,8 @@
 			{
 							 	
 				$contentString .= "
-				<fieldset class='fieldchoseneditrating'><br><span class='spangradient' style='white-space: nowrap'>
-				LiveSpelning</span>";
-				$contentString.= "<p class='pgradient'>".$editgrade->getEvent()."</p>";
-				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Band:</span>";
-				$contentString.="<p class='pgradient'>".$editgrade->getBand()."</p>";
+				<fieldset class='fieldchoseneditrating'><br><span class='spangradient' style='white-space: nowrap'>Album:</span>";
+				$contentString.= "<p class='pgradient'>".$editgrade->getAlbum()."</p>";
 				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
 				$contentString.="<p class='pgradient'>".$editgrade->getGrade()."</p>";
 				$contentString.= "<input type='hidden' name='$this->pickedid' value='". $editgrade->getID() ."'>";	

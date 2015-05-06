@@ -48,11 +48,8 @@
 			foreach($deletegradelist->toArray() as $grade)
 			{
 				$contentString .=  "<form method=post >";
-				$contentString .= "<fieldset class='fielddeleterating'><legend>Ta bort betyg</legend><br><span class='spangradient' style='white-space: nowrap'>
-				Livespelning:</span>";
-				$contentString.= "<p class='pgradient'>".$grade->getEvent()."</p>";
-				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Band:</span>";
-				$contentString.="<p class='pgradient'>".$grade->getBand()."</p>";
+				$contentString .= "<fieldset class='fielddeleterating'><legend>Ta bort betyg</legend><br><span class='spangradient' style='white-space: nowrap'>Album:</span>";
+				$contentString.= "<p class='pgradient'>".$grade->getAlbum()."</p>";
 				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
 				$contentString.= "<p class='pgradient'>".$grade->getGrade()."</p>"; 
 				$contentString.= "<input type='hidden' name='$this->pickeddeleteid' value='". $grade->getID() ."'>";
@@ -62,7 +59,7 @@
 			}
 	
 			$HTMLbody = "<div class='divdeletegrade'>
-			<h1>Ta bort betyg till vald spelning med band</h1>
+			<h1>Ta bort betyg till valt album</h1>
 			<p><a href='?login'>Tillbaka</a></p>
 			$contentString
 			</div>";

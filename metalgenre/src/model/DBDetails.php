@@ -10,6 +10,7 @@
 	require_once("EditGradeList.php");
 	require_once("DeleteGradeList.php");
 	require_once("AlbumBandList.php");
+	require_once("AlbumGradeList.php");
 
 	class DBDetails{
 
@@ -205,6 +206,35 @@
 
 
 		}
+		
+		public function checkIfAlbumExist($inputalbum)
+		{
+
+				$db = $this -> connection();
+				$this->dbTable = self::$albums;
+				$sql = "SELECT ". self::$albumname ." FROM `$this->dbTable` WHERE ". self::$albumname ." = ?";
+				$params = array($inputalbum);
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetch();
+				
+				
+
+				
+				if ($result[self::$albumname] !== null) {
+
+					throw new Exception("Albumet med det namnet finns redan");
+
+				}else{
+
+					return true;
+				}
+
+
+
+		}		
 
 		//Kontrollerar om livespelningen redan innehåller inmatade bandet. Om inte så returneras true annars kastas undantag.
 		public function checkIfBandExistsOnEvent($genredropdown, $banddropdown)
@@ -263,13 +293,13 @@
 		}
 
 		//Kontrollerar om användaren redan satt betyg på den livespelningen med det bandet. Om inte så returneras true annars kastas undantag.
-		public function checkIfGradeExistOnEventBandUser($eventdropdown,$banddropdown,$username)
+		public function checkIfGradeExistOnAlbumUser($albumdropdown,$username)
 		{
 
 				$db = $this -> connection();
 				$this->dbTable = self::$tblSummaryGrade;
-				$sql = "SELECT ". self::$event .",". self::$band .",". self::$username ." FROM `".$this->dbTable."` WHERE ". self::$event ." = ? AND ". self::$band ." = ? AND ". self::$username ." = ?";
-				$params = array($eventdropdown,$banddropdown,$username);
+				$sql = "SELECT ". self::$album .",". self::$username ." FROM `".$this->dbTable."` WHERE ". self::$album ." = ? AND ". self::$username ." = ?";
+				$params = array($albumdropdown,$username);
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -278,9 +308,9 @@
 								
 
 				
-				if ($result[self::$event] !== null && $result[self::$colband] !== null && $result[self::$colusername] !== null ) {
+				if ($result[self::$album] !== null && $result[self::$colusername] !== null ) {
 
-					throw new Exception("Spelningen med det bandet och användarnamn har redan ett betyg");
+					throw new Exception("Albumet med det användarnamnet har redan ett betyg");
 
 				}else{
 
@@ -315,12 +345,14 @@
 		}
 
 		//Kontrollerar om livespelningen och/eller bandet har fått sina värden manipulerade. Om inte så returneras true annars kastas undantag.
-		public function checkIfBandAndEventManipulated($pickedevent,$pickedband)
+		public function checkIfAlbumManipulated($pickedalbum)
 		{
+				
+				
 				$db = $this -> connection();
-				$this->dbTable = self::$tblEventBand;
-				$sql = "SELECT ". self::$event .",". self::$band ." FROM `".$this->dbTable."` WHERE ". self::$event ." = ? AND ". self::$band ." = ? ";
-				$params = array($pickedevent,$pickedband);
+				$this->dbTable = self::$tblalbumband;
+				$sql = "SELECT ". self::$album ." FROM `".$this->dbTable."` WHERE ". self::$album ." = ?";
+				$params = array($pickedalbum);
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -329,9 +361,9 @@
 								
 
 				
-				if ($result[self::$colevent] == null && $result[self::$colband] == null ) {
+				if ($result[self::$album] == null) {
 
-					throw new Exception("Livespelning och/eller bandet existerar ej i kolumnen livespelning respektive band");
+					throw new Exception("Album kolumnen med respektive band manipulerad");
 
 				}else{
 
@@ -671,7 +703,7 @@
 				
 				$showevents = new ShowEventList();
 				foreach ($result as $showeventdb) {
-					$showevent = new ShowEvent($showeventdb[self::$band], $showeventdb[self::$id], $showeventdb[self::$event], $showeventdb[self::$grade],$showeventdb[self::$username]);
+					$showevent = new ShowEvent($showeventdb[self::$album], $showeventdb[self::$id], $showeventdb[self::$grade],$showeventdb[self::$username]);
 					$showevents->add($showevent);
 
 				}
@@ -741,6 +773,20 @@
 				return $albums;
 		}
 
+		public function fetchShowGrade($albumname)
+		{
+				
+				$db = $this -> connection();
+				$this->dbTable = self::$tblSummaryGrade;
+				$sql = "SELECT grade FROM  `$this->dbTable` where `album` = ?  ";
+				$params = array($albumname);
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+				$result = $query -> fetchAll();
+				
+				return $result;
+		}
+
 
 
 		//Hämtar alla betyg satta av inloggade användaren och returnerar dessa.
@@ -760,7 +806,7 @@
 				
 				$editgrades = new EditGradeList();
 				foreach ($result as $editgradedb) {
-					$editgrade = new EditGrade($editgradedb[self::$grade], $editgradedb[self::$id], $editgradedb[self::$event], $editgradedb[self::$band],$editgradedb[self::$username]);
+					$editgrade = new EditGrade($editgradedb[self::$grade], $editgradedb[self::$id], $editgradedb[self::$album],$editgradedb[self::$username]);
 					$editgrades->add($editgrade);
 
 				}
@@ -784,7 +830,7 @@
 				
 				$editgrades = new EditGradeList();
 				foreach ($result as $editgradedb) {
-					$editgrade = new EditGrade($editgradedb[self::$grade], $editgradedb[self::$id], $editgradedb[self::$event], $editgradedb[self::$band],$editgradedb[self::$username]);
+					$editgrade = new EditGrade($editgradedb[self::$grade], $editgradedb[self::$id], $editgradedb[self::$album],$editgradedb[self::$username]);
 					$editgrades->add($editgrade);
 
 				}
@@ -808,7 +854,7 @@
 				
 				$deletegrades = new DeleteGradeList();
 				foreach ($result as $deletegradedb) {
-					$deletegrade = new DeleteGrade($deletegradedb[self::$grade], $deletegradedb[self::$id], $deletegradedb[self::$event], $deletegradedb[self::$band],$deletegradedb[self::$username]);
+					$deletegrade = new DeleteGrade($deletegradedb[self::$grade], $deletegradedb[self::$id], $deletegradedb[self::$album],$deletegradedb[self::$username]);
 					$deletegrades->add($deletegrade);
 
 				}
@@ -901,14 +947,14 @@
 		}
 
 		//Lägger till betyg till livespelning med angivet band till den inloggade användaren.
-		public function addGradeToEventBandWithUser($eventdropdown,$banddropdown,$gradedropdown,$username){
+		public function addGradeToAlbumWithUser($albumdropdown,$gradedropdown,$username){
 
 			try {
 					$db = $this -> connection();
 					$this->dbTable = self::$tblSummaryGrade;
 
-					$sql = "INSERT INTO $this->dbTable (".self::$event.",". self::$band .",". self::$grade .", ". self::$username .") VALUES (?,?,?,?)";
-					$params = array($eventdropdown,$banddropdown,$gradedropdown,$username);
+					$sql = "INSERT INTO $this->dbTable (".self::$album.",". self::$grade .", ". self::$username .") VALUES (?,?,?)";
+					$params = array($albumdropdown,$gradedropdown,$username);
 
 					$query = $db -> prepare($sql);
 					$query -> execute($params);
@@ -928,6 +974,23 @@
 
 					$sql = "INSERT INTO $this->dbTable (".self::$bandName.",".self::$biography .",".self::$discography .") VALUES (?,?,?)";
 					$params = array($inputband, $inputbiography,$inputdiscography);
+
+					$query = $db -> prepare($sql);
+					$query -> execute($params);
+					
+
+				} catch (\PDOException $e) {
+					die('An unknown error have occured.');
+				}
+		}
+
+		public function addAlbum($inputalbum, $inputcontents, $inputpersons) {
+				try {
+					$db = $this -> connection();
+					$this->dbTable = self::$albums;
+
+					$sql = "INSERT INTO $this->dbTable (".self::$albumname.",".self::$albumcontents .",".self::$albumpersons .") VALUES (?,?,?)";
+					$params = array($inputalbum, $inputcontents,$inputpersons);
 
 					$query = $db -> prepare($sql);
 					$query -> execute($params);

@@ -25,7 +25,7 @@
 		{
 			$showEvents = $this->db->fetchShowAllEvents();
 
-			$this->addratingview->ShowAllEventsWithBandGrades($showEvents);
+			$this->addratingview->ShowAllAlbumsWithGrades($showEvents);
 
 		}
 

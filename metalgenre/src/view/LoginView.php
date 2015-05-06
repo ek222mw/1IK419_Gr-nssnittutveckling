@@ -28,6 +28,7 @@
 		private $addbandtoevent = "addbandtoevent";
 		private $addbandtoalbum = "addbandtoalbum";
 		private $addband = "addband";
+		private $addalbum ="addalbum";
 		private $showgenres = "showgenres";
 		private $deleterating = "deleterating";
 		
@@ -87,6 +88,11 @@
 		public function didUserPressEditGrades()
 		{
 			return isset($_GET[$this->editrating]);
+		}
+
+		public function didUserPressAddAlbum()
+		{
+			return isset($_GET[$this->addalbum]);
 		}
 
 
@@ -223,6 +229,7 @@
 				<h2>Meny</h2>
 				<li><p><a href='?addband'>Lägg till band</a></p></li>
 				<li><p><a href='?addgenre'>Lägg till genre</a></p></li>
+				<li><p><a href='?addalbum'>Lägg till album</a></p></li>
 				<li><p><a href='?addbandtoevent'>Lägg till band till genre</a></p></li>
 				<li><p><a href='?addbandtoalbum'>Lägg till band till album</a></p></li>
 				<li><p><a href='?showgenres'>Visa genres</a></p></li>

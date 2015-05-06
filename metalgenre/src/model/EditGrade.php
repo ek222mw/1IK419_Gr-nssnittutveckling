@@ -5,16 +5,14 @@
 	{
 		private $m_grade;
 		private $m_id;
-		private $m_event;
-		private $m_band;
+		private $m_album;
 		private $m_user;
 
 		//tilldelar privata variabler konstruktorns invärden.
-		public function __construct($grade,$id,$event,$band,$user){
+		public function __construct($grade,$id,$album,$user){
 			$this->m_grade = $grade;
 			$this->m_id = $id;
-			$this->m_event = $event;
-			$this->m_band = $band;
+			$this->m_album = $album;
 			$this->m_user = $user;
 
 		}
@@ -32,17 +30,11 @@
 		}
 
 		//Returnerar livespelningen.
-		public function getEvent(){
+		public function getAlbum(){
 
-			return $this->m_event;
+			return $this->m_album;
 		}
 
-		//Returnerar bandet.
-		public function getBand(){
-
-			return $this->m_band;
-
-		}
 
 		//Returnerar användaren.
 		public function getUser(){

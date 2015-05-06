@@ -103,6 +103,15 @@
 			return true;
 		}
 
+		public function ValidateInputText($input){
+			
+			if(!preg_match('/^[A-Za-z-åäöÅÄÖ][A-Za-z0-9-\s-&-åäöÅÄÖ]{2,500}$/', $input))
+			{
+				throw new Exception("Inmatade värdet innehåller ogiltiga tecken");
+			}
+			return true;
+		}
+
 		//Returnerar privata variabeln success status.
 		public function UserRegistered(){
 

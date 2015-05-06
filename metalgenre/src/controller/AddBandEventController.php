@@ -42,6 +42,11 @@
 				$this->doControllBandToEvent();
 			}
 
+			if($this->loginview->didUserPressAddAlbum() && $this->loginmodel->checkLoginStatus())
+			{
+				$this->doControllAlbum();
+			}
+
 
 
 		}
@@ -191,9 +196,72 @@
 
 		}
 
+		public function doControllAlbum(){
+
+			if($this->loginview->didUserPressAddAlbum() && $this->loginmodel->checkLoginStatus())
+			{
+				try{
+					$album = $this->addbandeventview->getAlbumName();
+					$contents = $this->addbandeventview->getContents();
+					$persons = $this->addbandeventview->getPersons();
+
+					if($this->addbandeventview->didUserPressAddAlbumButton())
+					{
+						if($this->addbandeventmodel->CheckAlbumLength($album))
+						{
+							if($this->addbandeventmodel->CheckContentsLength($contents))
+							{
+								if($this->addbandeventmodel->CheckPersonsLength($persons))
+								{
+									if($this->loginmodel->ValidateInput($album))
+									{
+										if($this->loginmodel->ValidateInputText($contents))
+										{
+
+											if($this->loginmodel->ValidateInputText($contents))
+											{
+												if($this->db->checkIfGenreExist($album))
+												{
+													$this->db->AddAlbum($album, $contents, $persons);
+													$this->addbandeventview->successfulAddAlbum();
+										
+												}
+											}
+
+
+										}
+
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+					}
+				}
+				catch(Exception $e)
+				{
+					$this->addbandeventview->showMessage($e->getMessage());
+				}
+
+
+			}
+			
+
+
+
+			$this->doHTMLBody();
+
+		}
+
 		//Kontrollerar vilket formulär som ska skrivas ut av vyn beroende på vilka olika knappar och/eller länkar användaren tryckt på.
 		public function doHTMLBody()
 		{
+
 			
 				if($this->loginview->didUserPressAddBand())
 				{
@@ -212,6 +280,10 @@
 					
 
 					$this->addbandeventview->ShowAddBandToEventPage($genres, $bands);
+				}
+				if($this->loginview->didUserPressAddAlbum())
+				{	
+					$this->addbandeventview->ShowAddAlbumPage();
 				}
 
 				

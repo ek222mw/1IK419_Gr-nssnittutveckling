@@ -13,7 +13,11 @@
 		private $creatediscography = "discography";
 		private $createbiography = "biography";
 		private $creategenre = "creategenre";
+		private $createalbum = "createalbum";
+		private $contents = "contents";
+		private $persons = "persons";
 		private $createeventbutton = "createeventbutton";
+		private $createalbumbutton = "createalbumbutton";
 		private $createbandeventbutton = "createbandeventbutton";
 		private $createbandalbumbutton = "createbandalbumbutton";
 		private $creategenrebutton = "creategenrebutton";
@@ -69,10 +73,48 @@
 			return false;
 		}
 
+		public function getAlbumName(){
+
+			if(isset($_POST[$this->createalbum]))
+			{
+				return $_POST[$this->createalbum];
+			}
+			return false;
+		}
+
+
+		public function getContents(){
+
+			if(isset($_POST[$this->contents]))
+			{
+				return $_POST[$this->contents];
+			}
+			return false;
+		}
+
+		public function getPersons(){
+
+			if(isset($_POST[$this->persons]))
+			{
+				return $_POST[$this->persons];
+			}
+			return false;
+		}
+
 		//Kontrollerar om användaren tryckt på lägga till livespelning knappen, returnera sant annars falskt.
 		public function didUserPressAddGenreButton(){
 
 			if(isset($_POST[$this->creategenrebutton]))
+			{
+				return true;
+			}
+			return false;
+
+		}
+
+		public function didUserPressAddAlbumButton(){
+
+			if(isset($_POST[$this->createalbumbutton]))
 			{
 				return true;
 			}
@@ -163,6 +205,33 @@
 
 					$HTMLbody = "<div class='divaddevent'>
 					<h1>Skapa nytt band</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString<br>
+					</div>";
+
+					$this->echoHTML($HTMLbody);
+			}
+
+			//Visar lägga till livespelnings forumläret.
+		public function ShowAddAlbumPage(){
+
+					
+				
+					$contentString = 
+					 "
+					<form method=post >
+						<fieldset class='fieldaddevent'>
+							<legend>Lägga till nytt album - Skriv in nytt album</legend>
+							$this->message
+							<span style='white-space: nowrap'>Album:<br></span> <input type='text' name='$this->createalbum'><br>
+							<span style='white-space: nowrap'>Innehåll:<br></span> <textarea type='text' name='$this->contents'></textarea><br>
+							<span style='white-space: nowrap'>Medverkande:<br></span> <textarea type='text' name='$this->persons'></textarea><br>
+							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createalbumbutton'  value='Skapa'>
+						</fieldset>
+					</form>";
+
+					$HTMLbody = "<div class='divaddevent'>
+					<h1>Skapa nytt album</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					$contentString<br>
 					</div>";
@@ -300,6 +369,12 @@
 			{
 				$this->showMessage("Bandet lades till!");
 			}
+
+			public function successfulAddAlbum()
+			{
+				$this->showMessage("Albumet lades till!");
+			}
+
 
 			//Lägger in lyckat lägga till bandmeddelande i funktionen showMessage.
 			public function successfulAddGenre()
