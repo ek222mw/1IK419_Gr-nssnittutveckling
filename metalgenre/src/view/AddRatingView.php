@@ -215,16 +215,17 @@
 
 			public function ShowAllGenres(GenreList $showgenrelist)
 			{
-				
+					//standard bild från adress http://suptg.thisisnotatrueending.com/archive/5237253/images/1248382528677.png
 					$contentString ="<form method=post>";
-	
+					$dir = "././Pics/*.png";
+					//get the list of all files with .jpg extension in the directory and safe it in an array named $images
+					$images = glob( $dir );
 					foreach($showgenrelist->toArray() as $genre)
 					{
-							 	
-						$contentString .= "<fieldset class='fieldshowall'><span class='spangradient'  style='white-space: nowrap'>Genre</span><br>";
-						$contentString.= "<p class='pgradient'>".$genre->getName()."</p>";
-						$contentString .= "<a href='?showgenres&genrename=".$genre->getName()."'>Show Bands</a> ";
-						$contentString .= "</fieldset>";
+						foreach( $images as $image ):
+						if($image === $genre->getImgpath())
+						$contentString.= "<div class='Gallery'><a title='".$genre->getName()."' href='?showgenres&genrename=".$genre->getName()."'><img src='" . $image . "' /></a></div>";
+						endforeach;
 					}
 							 
 					$contentString .= "</form>";

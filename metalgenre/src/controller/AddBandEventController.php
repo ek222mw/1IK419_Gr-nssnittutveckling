@@ -65,7 +65,7 @@
 				try{
 
 					
-					if($this->addbandeventview->didUserPressAddEventButton())
+					if($this->addbandeventview->didUserPressAddBandButton())
 					{
 							
 							if($this->addbandeventmodel->CheckBandLength($band))

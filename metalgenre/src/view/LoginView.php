@@ -225,19 +225,39 @@
 				$HTMLbody = "<div class='divmenu'>
 				<h2>$this->loginStatus</h2>
 				$contentString<br>
-				<ul>
 				<h2>Meny</h2>
-				<li><p><a href='?addband'>Lägg till band</a></p></li>
-				<li><p><a href='?addgenre'>Lägg till genre</a></p></li>
-				<li><p><a href='?addalbum'>Lägg till album</a></p></li>
-				<li><p><a href='?addbandtoevent'>Lägg till band till genre</a></p></li>
-				<li><p><a href='?addbandtoalbum'>Lägg till band till album</a></p></li>
-				<li><p><a href='?showgenres'>Visa genres</a></p></li>
-				<li><p><a href='?addrating'>Lägg till betyg till livespelning med angivet band</a></p></li>
-				<li><p><a href='?editrating'>Editera betyg till livespelning med angivet band</a></p></li>
-				<li><p><a href='?deleterating'>Ta bort betyg till livespelning med angivet band</a></p></li>
-				<li><p><a href='?showevents'>Visa livespelningar med band samt betyg</a></p></li>
-				</ul>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+
+				
 				</div>";
 			}
 

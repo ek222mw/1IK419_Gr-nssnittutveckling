@@ -165,7 +165,7 @@
 				
 
 				
-				if ($result[self::$colevent] !== null) {
+				if ($result[self::$bandName] !== null) {
 
 					throw new Exception("Bandet med det namnet är redan upptaget");
 
@@ -513,7 +513,7 @@
 				$result = $query -> fetchall();
 				$genres = new GenreList();
 				foreach ($result as $genredb) {
-					$genre = new Genre($genredb[self::$genrename], $genredb[self::$genreid]);
+					$genre = new Genre($genredb[self::$genrename], $genredb[self::$genreid], $genredb['imgpath']);
 					$genres->add($genre);
 
 				}
@@ -726,7 +726,7 @@
 				
 				$showgenres = new GenreList();
 				foreach ($result as $showgenredb) {
-					$showgenre = new Genre($showgenredb[self::$genrename], $showgenredb[self::$genreid]);
+					$showgenre = new Genre($showgenredb[self::$genrename], $showgenredb[self::$genreid], $showgenredb['imgpath']);
 					$showgenres->add($showgenre);
 
 				}

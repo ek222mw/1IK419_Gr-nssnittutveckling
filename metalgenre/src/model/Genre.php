@@ -4,11 +4,13 @@
 
 		private $m_name;
 		private $m_id;
+		private $m_imgpath;
 
 		//Tilldelar privata variabler konstruktorns invärden.
-		public function __construct($name,$id){
+		public function __construct($name,$id,$imgpath){
 			$this->m_name = $name;
 			$this->m_id = $id;
+			$this->m_imgpath = $imgpath;
 
 		}
 
@@ -22,6 +24,11 @@
 		public function getID(){
 
 			return $this->m_id;
+		}
+
+		public function getImgpath(){
+
+			return $this->m_imgpath;
 		}
 
 	}

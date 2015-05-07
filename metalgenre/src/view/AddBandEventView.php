@@ -16,7 +16,7 @@
 		private $createalbum = "createalbum";
 		private $contents = "contents";
 		private $persons = "persons";
-		private $createeventbutton = "createeventbutton";
+		private $createbandbutton = "createbandbutton";
 		private $createalbumbutton = "createalbumbutton";
 		private $createbandeventbutton = "createbandeventbutton";
 		private $createbandalbumbutton = "createbandalbumbutton";
@@ -199,7 +199,7 @@
 							<span style='white-space: nowrap'>Band:<br></span> <input type='text' name='$this->createband'><br>
 							<span style='white-space: nowrap'>Biografi:<br></span> <textarea type='text' name='$this->createbiography'></textarea><br>
 							<span style='white-space: nowrap'>Discografi:<br></span> <textarea type='text' name='$this->creatediscography'></textarea><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createeventbutton'  value='Skapa'>
+							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandbutton'  value='Skapa'>
 						</fieldset>
 					</form>";
 
@@ -350,7 +350,7 @@
 					</form>";
 
 					$HTMLbody = "<div class='divaddbandevent'>
-					<h1>Lägg till band till vald genre</h1>
+					<h1>Lägg till band till valt album</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					$contentString<br>
 					</div>";
