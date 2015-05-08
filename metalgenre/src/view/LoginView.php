@@ -18,6 +18,7 @@
 		private $register = "register";
 		private $addgenre = "addgenre";
 		private $showevents = "showevents";
+		private $editgenre = "editgenre";
 		private $editrating = "editrating";
 		private $login = "login";
 		private $createuserbutton = "createuserbutton";
@@ -69,6 +70,12 @@
 		{
 
 			return isset($_GET[$this->addband]);
+		}
+
+		public function didUserPressEditGenre()
+		{
+
+			return isset($_GET[$this->editgenre]);
 		}
 
 		public function didUserPressShowGenre()
@@ -241,6 +248,8 @@
 							<li><a href='#'>Editera</a>
 								<ul>
 									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
 								
 								</ul>
 							</li>

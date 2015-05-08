@@ -11,6 +11,9 @@
 	require_once("DeleteGradeList.php");
 	require_once("AlbumBandList.php");
 	require_once("AlbumGradeList.php");
+	require_once("FetchGenreList.php");
+	
+
 
 	class DBDetails{
 
@@ -594,6 +597,51 @@
 
 		}
 
+		public function fetchGenresWithUser($user)
+		{
+
+
+				$db = $this -> connection();
+				$this->dbTable = self::$tblGenre;
+				$sql = "SELECT * FROM `$this->dbTable` where ". self::$colusername ." = ?";
+				$params = array($user);
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+				$result = $query -> fetchall();
+
+				$fetchgenres = new FetchGenreList();
+				foreach ($result as $fetchgenredb) {
+					$fetchgenre = new FetchGenre($fetchgenredb[self::$genrename], $fetchgenredb[self::$genreid], $fetchgenredb[self::$colusername]);
+					$fetchgenres->add($fetchgenre);
+
+				}
+				return $fetchgenres;
+
+		}
+
+
+		public function fetchGenresWithID($id)
+		{
+
+
+				$db = $this -> connection();
+				$this->dbTable = self::$tblGenre;
+				$sql = "SELECT * FROM `$this->dbTable` where ". self::$genreid ." = ?";
+				$params = array($id);
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+				$result = $query -> fetchall();
+
+				$fetchgenres = new FetchGenreList();
+				foreach ($result as $fetchgenredb) {
+					$fetchgenre = new FetchGenre($fetchgenredb[self::$genrename], $fetchgenredb[self::$genreid], $fetchgenredb[self::$colusername]);
+					$fetchgenres->add($fetchgenre);
+
+				}
+				return $fetchgenres;
+
+		}
+
 		//Hämtar alla band innehållandes livespelningar och returnerar dessa.
 		public function fetchAllBandsWithEvent(){
 
@@ -896,6 +944,7 @@
 					
 
 				} catch (\PDOException $e) {
+					
 					die('An unknown error have occured.');
 				}
 
@@ -1010,6 +1059,27 @@
 			$this->dbTable = self::$tblSummaryGrade;
 			$sql = "UPDATE $this->dbTable SET ". self::$grade ."=? WHERE ". self::$id ."=?";
 			$params = array($inputgrade,$inputid);
+
+			$query = $db -> prepare($sql);
+			$query -> execute($params);
+					
+
+			} catch (\PDOException $e) {
+					die('An unknown error have occured.');
+			}
+        
+		}
+
+		//Editerar betyget.
+		public function EditGenre($inputgenre,$inputid)
+		{
+			try{
+				
+
+			$db = $this -> connection();
+			$this->dbTable = self::$tblGenre;
+			$sql = "UPDATE $this->dbTable SET ". self::$genrename ."=? WHERE ". self::$genreid ."=?";
+			$params = array($inputgenre,$inputid);
 
 			$query = $db -> prepare($sql);
 			$query -> execute($params);

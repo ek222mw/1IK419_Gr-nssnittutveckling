@@ -25,6 +25,8 @@
 
 		}
 
+		
+
 		public function CheckAlbumLength($album){
 
 			if(mb_strlen($album) < 1 || mb_strlen($album) > 70 ){
