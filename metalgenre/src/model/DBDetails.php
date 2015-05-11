@@ -347,6 +347,30 @@
 				}
 		}
 
+		public function checkIfIdManipulatedGenre($pickedid, $loggedinUser)
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblGenre;
+				$sql = "SELECT ". self::$genreid .",". self::$username ." FROM `".$this->dbTable."` WHERE ". self::$genreid ." = ? AND ". self::$username ." = ? ";
+				$params = array($pickedid,$loggedinUser);
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetch();
+								
+
+				
+				if ($result[self::$genreid] == null && $result[self::$username] == null ) {
+
+					throw new Exception("Id till den genren har inte rätt användarnamn");
+
+				}else{
+
+					return true;
+				}
+		}
+
 		//Kontrollerar om livespelningen och/eller bandet har fått sina värden manipulerade. Om inte så returneras true annars kastas undantag.
 		public function checkIfAlbumManipulated($pickedalbum)
 		{
@@ -930,14 +954,14 @@
 		}
 
 		//Lägger till bandet.
-		public function addGenre($inputgenre)
+		public function addGenre($inputgenre,$user)
 		{
 			try {
 					$db = $this -> connection();
 					$this->dbTable = self::$tblGenre;
 
-					$sql = "INSERT INTO $this->dbTable (".self::$genrename.") VALUES (?)";
-					$params = array($inputgenre);
+					$sql = "INSERT INTO $this->dbTable (".self::$genrename.",".self::$username .") VALUES (?,?)";
+					$params = array($inputgenre,$user);
 
 					$query = $db -> prepare($sql);
 					$query -> execute($params);
@@ -1099,6 +1123,21 @@
 			$this->dbTable = self::$tblSummaryGrade;
 
 			$sql = "DELETE FROM $this->dbTable WHERE ". self::$id ." = ?";
+			$params = array($inputid);
+
+			$query = $db -> prepare($sql);
+			$query -> execute($params);
+
+
+		}
+
+		public function DeleteGenre($inputid)
+		{
+
+			$db = $this -> connection();
+			$this->dbTable = self::$tblGenre;
+
+			$sql = "DELETE FROM $this->dbTable WHERE ". self::$genreid ." = ?";
 			$params = array($inputid);
 
 			$query = $db -> prepare($sql);

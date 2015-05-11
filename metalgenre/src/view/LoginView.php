@@ -19,6 +19,7 @@
 		private $addgenre = "addgenre";
 		private $showevents = "showevents";
 		private $editgenre = "editgenre";
+		private $deletegenre = "deletegenre";
 		private $editrating = "editrating";
 		private $login = "login";
 		private $createuserbutton = "createuserbutton";
@@ -76,6 +77,12 @@
 		{
 
 			return isset($_GET[$this->editgenre]);
+		}
+
+		public function didUserPressDeleteGenre()
+		{
+
+			return isset($_GET[$this->deletegenre]);
 		}
 
 		public function didUserPressShowGenre()
@@ -256,6 +263,7 @@
 							<li><a href='#'>Ta bort</a>
 								<ul>
 									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
 								</ul>
 							</li>
 							<li><a href='#'>Visa</a>

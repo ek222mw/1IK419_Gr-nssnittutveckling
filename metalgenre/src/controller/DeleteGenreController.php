@@ -4,10 +4,10 @@
 	require_once("./src/model/DBDetails.php");
 	require_once("./src/view/LoginView.php");
 	require_once("./src/model/LoginModel.php");
-	require_once("./src/view/EditGenreView.php");
+	require_once("./src/view/DeleteGenreView.php");
 	require_once("./src/model/AddBandEventModel.php");
 
-	class EditGenreController{
+	class DeleteGenreController{
 
 		
 		private $addratingview;
@@ -15,11 +15,11 @@
 		private $db;
 		private $view;
 		private $model;
-		private $editgenreview;
+		private $deletegenreview;
 
 		public function __construct(){
 			$this->model = new LoginModel();
-			$this->editgenreview = new EditGenreView();
+			$this->deletegenreview = new DeleteGenreView();
 			$this->addbandeventmodel = new AddBandEventModel();
 			// Skapar nya instanser av modell- & vy-klasser och lägger dessa i privata variabler.
 			$this->addratingview = new AddRatingView();
@@ -38,37 +38,35 @@
 				
 			
 					
-				if($this->view->didUserPressEditGenre() || $this->editgenreview->didUserPressChooseGenreButton())
+				if($this->view->didUserPressDeleteGenre() || $this->deletegenreview->didUserPressChooseGenreButton())
 				{
 					
 				
 					
 						
-						$chosenid = $this->editgenreview->getGenreID();
-						$neweditgenre = $this->editgenreview->getEditGenre();
+						$chosenid = $this->deletegenreview->getGenreID();
+						$newdeletegenre = $this->deletegenreview->getDeleteGenre();
 						$loggedinUser = $this->model->getLoggedInUser();
 						
-						if($this->editgenreview->didUserPressEditGenreButton())
+						if($this->deletegenreview->didUserPressDeleteGenreButton())
 						{
 							
 						try{
 
-						if($this->addbandeventmodel->CheckGenreLength($neweditgenre))
-						{
+						
 							
-							if($this->model->ValidateInput($neweditgenre))
-							{
+							
 								if($this->db->checkIfIdManipulatedGenre($chosenid,$loggedinUser))
 								{
 									
-										$this->db->EditGenre($neweditgenre,$chosenid);
-										$this->editgenreview->successfulEditGenre();
+										$this->db->DeleteGenre($chosenid);
+										$this->deletegenreview->successfulDeleteGenre();
 									
 								}
 
-							}
+							
 
-						}
+						
 
 
 					}
@@ -76,7 +74,7 @@
 
 					catch(Exception $e)
 					{
-							$this->editgenreview->showMessage($e->getMessage());
+							$this->deletegenreview->showMessage($e->getMessage());
 					}
 				
 				}
@@ -89,24 +87,24 @@
 		//anropar vilken vy som ska visas.
 		public function doHTMLBody()
 		{
-			if($this->view->didUserPressEditGenre() && !$this->editgenreview->didUserPressChooseGenreButton() )
+			if($this->view->didUserPressDeleteGenre() && !$this->deletegenreview->didUserPressChooseGenreButton() )
 			{
 			
 				
 				$loggedinUser = $this->model->getLoggedInUser();
 				$fetchgenre = $this->db->fetchGenresWithUser($loggedinUser);
-				$this->editgenreview->ShowEditGenrePage($fetchgenre);
+				$this->deletegenreview->ShowDeleteGenrePage($fetchgenre);
 			}
 			
 
-			if($this->editgenreview->didUserPressChooseGenreButton())
+			if($this->deletegenreview->didUserPressChooseGenreButton())
 			{
 				
-				$chgenre = $this->editgenreview->pickedGenreDropdownValue();
+				$chgenre = $this->deletegenreview->pickedGenreDropdownValue();
 				
 				$fetchid = $this->db->fetchGenresWithID($chgenre);
 
-				$this->editgenreview->ShowChosenEditGenrePage($fetchid, $chgenre);
+				$this->deletegenreview->ShowChosenDeleteGenrePage($fetchid, $chgenre);
 			}
 			
 

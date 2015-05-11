@@ -12,6 +12,7 @@
 	require_once("ShowGenreController.php");
 	require_once("AddBandToAlbumController.php");
 	require_once("EditGenreController.php");
+	require_once("DeleteGenreController.php");
 	
 	
 	
@@ -30,7 +31,7 @@
 			//Väljer vilken controller som ska användas beroende på indata, t.ex. knappar och länkar.
 			if(!$this->view->didUserPressAddBand() && !$this->view->didUserPressAddRating() && !$this->view->didUserPressAddBandToEvent() && !$this->view->didUserPressAddGenre() && 
 				!$this->view->didUserPressShowAllEvents() && !$this->view->didUserPressEditGrades() && !$this->view->didUserPressDeleteGrade() && !$this->view->didUserPressShowGenre()
-				&& !$this->view->didUserPressAddBandToAlbum() && !$this->view->didUserPressAddAlbum() && !$this->view->didUserPressEditGenre())
+				&& !$this->view->didUserPressAddBandToAlbum() && !$this->view->didUserPressAddAlbum() && !$this->view->didUserPressEditGenre() && !$this->view->didUserPressDeleteGenre())
 			{
 				$loginC = new LoginController();
 				$htmlBodyLogin = $loginC->doHTMLBody();
@@ -73,6 +74,11 @@
 			{
 				$editgenreC = new EditGenreController();
 			}
+			else if($this->view->didUserPressDeleteGenre() && $this->model->checkLoginStatus())
+			{
+				$deletegenreC = new DeleteGenreController();
+			}
+
 			else{
 
 				$loginControl = new LoginController();

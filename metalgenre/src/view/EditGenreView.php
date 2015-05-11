@@ -95,7 +95,7 @@
 										 
 								$contentString .= "</select>
 
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->chooseeditgenrebutton'  value='Välj genre'>
+							<span style='white-space: nowrap'></span> <input type='submit' name='$this->chooseeditgenrebutton'  value='Välj genre'>
 						</fieldset>
 					</form>";
 
@@ -128,7 +128,7 @@
 								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->editid' value='$id'><br>";
 										 
 								
-							$contentString .="<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->editgenrebutton'  value='Editera'>
+							$contentString .="<span style='white-space: nowrap'></span> <input type='submit' name='$this->editgenrebutton'  value='Editera'>
 						</fieldset>
 					</form>";
 

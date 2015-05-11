@@ -106,7 +106,7 @@
 			{
 				//Variabler som innehåller funktionsanrop istället för hela funktionsanrop i koden. Gör det lättare att läsa koden.
 				$genre = $this->addbandeventview->getGenreName();
-
+				$loggedinUser = $this->loginmodel->getLoggedInUser();
 				
 
 				try{
@@ -115,19 +115,18 @@
 					if($this->addbandeventview->didUserPressAddGenreButton())
 					{
 						
-						echo "1";
+						
 						if($this->addbandeventmodel->CheckGenreLength($genre))
 						{
 
-							echo "2";
+							
 							if($this->loginmodel->ValidateInput($genre))
 							{	
-								echo "3";
+								
 								if($this->db->checkIfGenreExist($genre))
 								{		
-										echo "4";
-										echo $genre;
-										$this->db->addGenre($genre);
+										
+										$this->db->addGenre($genre,$loggedinUser);
 										$this->addbandeventview->successfulAddGenre();
 								}
 							}
