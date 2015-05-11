@@ -7,13 +7,15 @@
 		private $m_id;
 		private $m_biography;
 		private $m_discography;
+		private $m_imgpath;
 
 		//Tilldelar privata variabler konstruktorns invärden.
-		public function __construct($name,$id,$biography,$discography){
+		public function __construct($name,$id,$biography,$discography, $imgpath){
 			$this->m_name = $name;
 			$this->m_id = $id;
 			$this->m_biography = $biography;
 			$this->m_discography = $discography;
+			$this->m_imgpath = $imgpath;
 
 
 		}
@@ -38,5 +40,10 @@
 		public function getDiscoGraphy(){
 
 			return $this->m_discography;
+		}
+
+		public function getImgpath(){
+
+			return $this->m_imgpath;
 		}
 	}

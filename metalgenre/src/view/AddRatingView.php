@@ -246,12 +246,25 @@
 			{
 				
 					$contentString ="<form method=post >";
-	
+						//standard bild från adress http://suptg.thisisnotatrueending.com/archive/5237253/images/1248382528677.png
+					
+					$dir = "././Pics/*.jpg";
+					//get the list of all files with .jpg extension in the directory and safe it in an array named $images
+					$images = glob( $dir );
 					foreach($showbandlist->toArray() as $band)
 					{
 							 	
-						$contentString .= "<fieldset class='fieldshowall'><h3>Band</h3>";
+						$contentString .= "<fieldset class='fieldshowall'>";
 							
+						foreach( $images as $image )
+						{
+						
+							if($image === $band->getImgpath())
+							{
+								$contentString.= "<img class='img' src='" . $image . "' />";
+							}
+						}
+						$contentString .= "<h3>Band</h3>";
 						$contentString.= "<p class='pgradient'>".$band->getName()."</p>";
 						$contentString.= "<h3>Biografi</h3>";
 						$contentString.= "<p class='pgradient'>".$band->getBioGraphy()."</p>";
@@ -286,10 +299,11 @@
 						$grade = $this->db->fetchShowGrade($album->getName());
 						
 							
-						$contentString .= "<fieldset class='fieldshowall'><h3>Album</h3>";
+						$contentString .= "<fieldset class='fieldshowall'>";
 						$contentString.= "<h3>Betyg</h3>";
 						foreach ($grade as $value) {
-							$contentString.= "<p class='pgradient'>".$value[0]."</p>";
+							
+							$contentString.= "<NOBR class='nobr'>".$value[0].", </NOBR>";
 						}
 						
 						$contentString.= "<h3>Album</h3>";

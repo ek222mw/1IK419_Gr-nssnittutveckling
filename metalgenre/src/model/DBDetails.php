@@ -37,6 +37,7 @@
 		private static $albums = "albums";
 		private static $albumid = "albumid";
 		private static $albumname = "name";
+		private static $imgpath = "imgpath";
 		private static $albumcontents = "contents";
 		private static $albumpersons = "persons";
 		private static $tblalbumband ="albumband";
@@ -564,7 +565,7 @@
 				$result = $query -> fetchall();
 				$bands = new BandList();
 				foreach ($result as $banddb) {
-					$band = new Band($banddb[self::$bandName], $banddb[self::$bandid], $banddb[self::$biography], $banddb[self::$discography]);
+					$band = new Band($banddb[self::$bandName], $banddb[self::$bandid], $banddb[self::$biography], $banddb[self::$discography], $banddb[self::$imgpath]);
 					$bands->add($band);
 
 				}
@@ -818,7 +819,7 @@
 				
 				$bands = new BandList();
 				foreach ($result as $banddb) {
-					$band = new Band($banddb[self::$bandName], $banddb[self::$bandid], $banddb[self::$biography], $banddb[self::$discography]);
+					$band = new Band($banddb[self::$bandName], $banddb[self::$bandid], $banddb[self::$biography], $banddb[self::$discography], $banddb[self::$imgpath]);
 					$bands->add($band);
 
 				}
