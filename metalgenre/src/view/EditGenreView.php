@@ -90,7 +90,7 @@
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
 									
-									$contentString.= "<option value='". $chooseedit->getID()."'>".$chooseedit->getName()."</option>";
+									$contentString.= "<option value='". $chooseedit->getName()."'>".$chooseedit->getName()."</option>";
 								}
 										 
 								$contentString .= "</select>
@@ -109,7 +109,41 @@
 
 			}
 
-			public function ShowChosenEditGenrePage(FetchGenreList $fetchgenrelist, $id){
+			public function ShowAdminEditGenrePage(GenreList $fetchgenrelist){
+
+					
+				
+					$contentString = 
+					 "
+					<form method=post >
+						<fieldset class='fieldaddband'>
+							<legend>Välj genre att editera </legend>
+							$this->message
+							<select name='dropdownpickeditgenre'>";
+
+								foreach($fetchgenrelist->toArray() as $chooseedit)
+								{
+									
+									$contentString.= "<option value='". $chooseedit->getName()."'>".$chooseedit->getName()."</option>";
+								}
+										 
+								$contentString .= "</select>
+
+							<span style='white-space: nowrap'></span> <input type='submit' name='$this->chooseeditgenrebutton'  value='Välj genre'>
+						</fieldset>
+					</form>";
+
+					$HTMLbody = "<div class='divaddband'>
+					<h1>Editera Genre</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString<br>
+					</div>";
+
+					$this->echoHTML($HTMLbody);
+
+			}
+
+			public function ShowChosenEditGenrePage(FetchGenreList $fetchgenrelist, $name){
 
 					
 				
@@ -125,7 +159,7 @@
 									
 									$contentString.= "<span style='white-space: nowrap'>Genre:</span><input type='text' name='$this->editgenre' value='".$chooseedit->getName() ."'><br>";
 								}
-								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->editid' value='$id'><br>";
+								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->editid' value='$name'><br>";
 										 
 								
 							$contentString .="<span style='white-space: nowrap'></span> <input type='submit' name='$this->editgenrebutton'  value='Editera'>

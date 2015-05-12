@@ -90,7 +90,7 @@
 								foreach($fetchgenrelist->toArray() as $choosedelete)
 								{
 									
-									$contentString.= "<option value='". $choosedelete->getID()."'>".$choosedelete->getName()."</option>";
+									$contentString.= "<option value='". $choosedelete->getName()."'>".$choosedelete->getName()."</option>";
 								}
 										 
 								$contentString .= "</select>
@@ -109,7 +109,41 @@
 
 			}
 
-			public function ShowChosenDeleteGenrePage(FetchGenreList $fetchgenrelist, $id){
+				public function ShowAdminDeleteGenrePage(GenreList $fetchgenrelist){
+
+					
+				
+					$contentString = 
+					 "
+					<form method=post >
+						<fieldset class='fieldaddband'>
+							<legend>Välj genre att ta bort</legend>
+							$this->message
+							<select name='dropdownpickdeletegenre'>";
+
+								foreach($fetchgenrelist->toArray() as $choosedelete)
+								{
+									
+									$contentString.= "<option value='". $choosedelete->getName()."'>".$choosedelete->getName()."</option>";
+								}
+										 
+								$contentString .= "</select>
+
+							<span style='white-space: nowrap'></span> <input type='submit' name='$this->choosedeletegenrebutton'  value='Välj genre'>
+						</fieldset>
+					</form>";
+
+					$HTMLbody = "<div class='divaddband'>
+					<h1>Ta bort Genre</h1>
+					<p><a href='?login'>Tillbaka</a></p>
+					$contentString<br>
+					</div>";
+
+					$this->echoHTML($HTMLbody);
+
+			}
+
+			public function ShowChosenDeleteGenrePage(FetchGenreList $fetchgenrelist, $name){
 
 					
 				
@@ -125,7 +159,7 @@
 									
 									$contentString.= "<span style='white-space: nowrap'>Genre:</span><p name='$this->deletegenre' >".$choosedelete->getName() ."</p>";
 								}
-								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->deleteid' value='$id'><br>";
+								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->deleteid' value='$name'><br>";
 										 
 								
 							$contentString .="<span style='white-space: nowrap'></span> <input type='submit' name='$this->deletegenrebutton'  value='Ta bort'>

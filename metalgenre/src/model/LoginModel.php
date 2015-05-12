@@ -138,8 +138,8 @@
 		public function verifyUserInput($inputUsername, $inputPassword, $isCookieLogin = false)
 		{
 
-			$DB_Username = $this->db->getDBUserInput($inputUsername);
-			$DB_Password = $this->db->getDBPassInput($inputPassword);
+			//$DB_Username = $this->db->getDBUserInput($inputUsername);
+			//$DB_Password = $this->db->getDBPassInput($inputPassword);
 			$emptystring = "";
 				
 
@@ -154,10 +154,12 @@
 				// Kasta undantag.
 				throw new Exception("Lösenord saknas");
 			}
+
+			$result = $this->db->verifyInput($inputUsername,$inputPassword);
 			
 			
 			// Kontrollerar ifall inparametrarna matchar de faktiska användaruppgifterna.
-			if($inputUsername == $DB_Username && $inputPassword == $DB_Password)
+			if($result)
 			{
 				// Inloggningsstatus och användarnamn sparas i sessionen.
 				$_SESSION[$this->loggedIn] = true;

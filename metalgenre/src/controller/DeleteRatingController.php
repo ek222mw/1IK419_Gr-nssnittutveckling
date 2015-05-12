@@ -35,12 +35,19 @@
 			{
 				$loggedinUser = $this->loginmodel->getLoggedInUser();
 				$pickedid = $this->deleteratingview->getDeletePickedValue();
+				$role = $this->db->getDBUserRole($loggedinUser);
 
 				try{
 
 					if($this->deleteratingview->didUserPressDeleteGradeButton())
 					{
-						if($this->db->checkIfIdManipulated($pickedid,$loggedinUser))
+						if($role)
+						{
+							$this->db->DeleteGrades($pickedid);
+							$this->deleteratingview->successfulDeleteGradeToEventWithBand();
+						}
+
+						else if($this->db->checkIfIdManipulated($pickedid,$loggedinUser))
 						{
 							
 							$this->db->DeleteGrades($pickedid);
@@ -63,12 +70,24 @@
 		//Kontrollerar vilket formulär som ska skrivas ut av vyn beroende på vilka olika knappar och/eller länkar användaren tryckt på.
 		
 		public function doHTMLBody()
-		{
-
+		{		
 				$loggedinUser = $this->loginmodel->getLoggedInUser();
-				$loggedinUserwithdetails = $this->db->fetchDeleteGradesWithSpecUser($loggedinUser);
+				$role = $this->db->getDBUserRole($loggedinUser);
 
-				$this->deleteratingview->ShowDeleteRatingPage($loggedinUserwithdetails);
+				if(!$role)
+				{
+
+					$loggedinUser = $this->loginmodel->getLoggedInUser();
+					$loggedinUserwithdetails = $this->db->fetchDeleteGradesWithSpecUser($loggedinUser);
+
+					$this->deleteratingview->ShowDeleteRatingPage($loggedinUserwithdetails);
+				}
+				else if($role)
+				{
+					$allgrades = $this->db->fetchDeleteAdminGrades();
+
+					$this->deleteratingview->ShowDeleteRatingPage($allgrades);
+				}
 		}
 
 

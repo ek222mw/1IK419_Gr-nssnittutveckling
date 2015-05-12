@@ -51,7 +51,9 @@
 				$contentString .= "<fieldset class='fielddeleterating'><legend>Ta bort betyg</legend><br><span class='spangradient' style='white-space: nowrap'>Album:</span>";
 				$contentString.= "<p class='pgradient'>".$grade->getAlbum()."</p>";
 				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
-				$contentString.= "<p class='pgradient'>".$grade->getGrade()."</p>"; 
+				$contentString.= "<p class='pgradient'>".$grade->getGrade()."</p>";
+				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Användare:</span>";
+				$contentString.= "<p class='pgradient'>".$grade->getUser()."</p>"; 
 				$contentString.= "<input type='hidden' name='$this->pickeddeleteid' value='". $grade->getID() ."'>";
 				$contentString.= "<input type='submit' name='$this->deletegradebutton' value='Ta bort betyg'>";
 				$contentString .= "</fieldset>";

@@ -43,20 +43,21 @@
 
 					if($this->addbandeventview->didUserPressAddBandToAlbumButton())
 					{
-						
-						if($this->db->checkIfBandExistsOnAlbum($albumdropdownvalue,$banddropdownvalue))
-						{	
-							if($this->db->checkIfPickAlbumFromAlbumTableIsManipulated($albumdropdownvalue))
-							{	
-								if($this->db->checkIfPickBandFromBandTableIsManipulated($banddropdownvalue))
+						if($this->db->checkIfAlbumExistsAlready($albumdropdownvalue))
+						{
+							if($this->db->checkIfBandExistsOnAlbum($albumdropdownvalue,$banddropdownvalue))
+							{
+								if($this->db->checkIfPickAlbumFromAlbumTableIsManipulated($albumdropdownvalue))
 								{	
-									$this->db->addBandToAlbum($albumdropdownvalue,$banddropdownvalue);
-									$this->addbandeventview->successfulAddBandToAlbum();
+									if($this->db->checkIfPickBandFromBandTableIsManipulated($banddropdownvalue))
+									{	
+										$this->db->addBandToAlbum($albumdropdownvalue,$banddropdownvalue);
+										$this->addbandeventview->successfulAddBandToAlbum();
+									}
+									
+
 								}
-								
-
 							}
-
 						}
 					}
 

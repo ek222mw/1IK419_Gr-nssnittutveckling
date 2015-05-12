@@ -33,6 +33,7 @@
 		private static $grade = "grade";
 		private static $genre = "genre";
 		private static $band = "band";
+		private static $role = "role";
 		private static $album = "album";
 		private static $albums = "albums";
 		private static $albumid = "albumid";
@@ -105,7 +106,7 @@
 		}	
 
 		//Hämtar och returnerar användarnamnet från databasen.
-		public function getDBUserInput($inputUser)
+		/*public function getDBUserInput($inputUser)
 		{
 			$db = $this -> connection();
 			$this->dbTable = self::$tblUser;
@@ -125,10 +126,49 @@
 				
 			}
 
+		}*/
+
+		public function getDBUserRole($inputUser)
+		{
+			$db = $this -> connection();
+			$this->dbTable = self::$tblUser;
+
+			$sql = "SELECT ". self::$role ." FROM `$this->dbTable` WHERE ". self::$username ." = ?";
+			$params = array($inputUser);
+
+			$query = $db -> prepare($sql);
+			$query -> execute($params);
+
+			$result = $query -> fetch();
+			
+			
+			if ($result) {
+				
+				return $result[self::$role];
+				
+			}
+
+		}
+
+		public function verifyInput($inputUsername, $inputPassword)
+		{
+
+						$db = $this -> connection();
+						$this->dbTable = self::$tblUser;
+						$sql = "SELECT * FROM `$this->dbTable` WHERE username= ? AND password= ?";
+						$params = array($inputUsername, $inputPassword);
+						$query = $db -> prepare($sql);
+						$query -> execute($params);
+						$rows = $query -> fetchColumn();
+
+						return $rows;
+
+
+
 		}
 
 		//Hämtar och returnerar lösenordet från databasen.
-		public function getDBPassInput($inputPassword)
+		/*public function getDBPassInput($inputPassword)
 		{
 
 			$db = $this -> connection();
@@ -149,7 +189,7 @@
 				
 			}
 
-		}
+		}*/
 
 		//Kontrollerar om bandet redan finns.Om inte så returneras true annars kastas undantag.
 		public function checkIfBandExist($inputband)
@@ -296,6 +336,32 @@
 
 		}
 
+		public function checkIfAlbumExistsAlready($albumdropdown)
+		{
+
+						$db = $this -> connection();
+						$this->dbTable = self::$tblalbumband;
+						$sql = "SELECT * FROM `$this->dbTable` WHERE ".self::$album."= ?";
+						$params = array($albumdropdown);
+						$query = $db -> prepare($sql);
+						$query -> execute($params);
+						$rows = $query -> fetchColumn();
+
+						
+
+
+				
+				if ($rows > 0) {
+
+					throw new Exception("Albumet är redan kopplat till ett band och kan bara tillhöra ett band");
+
+				}else{
+
+					return true;
+				}
+
+		}
+
 		//Kontrollerar om användaren redan satt betyg på den livespelningen med det bandet. Om inte så returneras true annars kastas undantag.
 		public function checkIfGradeExistOnAlbumUser($albumdropdown,$username)
 		{
@@ -348,12 +414,12 @@
 				}
 		}
 
-		public function checkIfIdManipulatedGenre($pickedid, $loggedinUser)
+		public function checkIfIdManipulatedGenre($pickedname, $loggedinUser)
 		{
 				$db = $this -> connection();
 				$this->dbTable = self::$tblGenre;
-				$sql = "SELECT ". self::$genreid .",". self::$username ." FROM `".$this->dbTable."` WHERE ". self::$genreid ." = ? AND ". self::$username ." = ? ";
-				$params = array($pickedid,$loggedinUser);
+				$sql = "SELECT ". self::$genrename .",". self::$username ." FROM `".$this->dbTable."` WHERE ". self::$genrename ." = ? AND ". self::$username ." = ? ";
+				$params = array($pickedname,$loggedinUser);
 
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -362,7 +428,7 @@
 								
 
 				
-				if ($result[self::$genreid] == null && $result[self::$username] == null ) {
+				if ($result[self::$genrename] == null && $result[self::$username] == null ) {
 
 					throw new Exception("Id till den genren har inte rätt användarnamn");
 
@@ -645,14 +711,16 @@
 		}
 
 
-		public function fetchGenresWithID($id)
+
+
+		public function fetchGenresWithName($name)
 		{
 
 
 				$db = $this -> connection();
 				$this->dbTable = self::$tblGenre;
-				$sql = "SELECT * FROM `$this->dbTable` where ". self::$genreid ." = ?";
-				$params = array($id);
+				$sql = "SELECT * FROM `$this->dbTable` where ". self::$genrename ." = ?";
+				$params = array($name);
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
 				$result = $query -> fetchall();
@@ -886,6 +954,29 @@
 				return $editgrades;
 		}
 
+		public function fetchAdminEditGrades()
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblSummaryGrade;
+				$sql = "SELECT * FROM `$this->dbTable`";
+				$params = array();
+				
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetchall();
+				
+				
+				$editgrades = new EditGradeList();
+				foreach ($result as $editgradedb) {
+					$editgrade = new EditGrade($editgradedb[self::$grade], $editgradedb[self::$id], $editgradedb[self::$album],$editgradedb[self::$username]);
+					$editgrades->add($editgrade);
+
+				}
+				return $editgrades;
+		}
+
 		//Hämtar id till det betyg som inloggade användaren har valt att editera.Hämtar även livespelning,band och användarnamn. returnerar sedan samtliga poster.
 		public function fetchIdPickedEditGrades($pickedid)
 		{
@@ -917,6 +1008,29 @@
 				$this->dbTable = self::$tblSummaryGrade;
 				$sql = "SELECT * FROM `$this->dbTable` WHERE ". self::$username ." = ? ";
 				$params = array($loggedinUser);
+				
+
+				$query = $db -> prepare($sql);
+				$query -> execute($params);
+
+				$result = $query -> fetchall();
+				
+				
+				$deletegrades = new DeleteGradeList();
+				foreach ($result as $deletegradedb) {
+					$deletegrade = new DeleteGrade($deletegradedb[self::$grade], $deletegradedb[self::$id], $deletegradedb[self::$album],$deletegradedb[self::$username]);
+					$deletegrades->add($deletegrade);
+
+				}
+				return $deletegrades;
+		}
+
+		public function fetchDeleteAdminGrades()
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblSummaryGrade;
+				$sql = "SELECT * FROM `$this->dbTable` ";
+				$params = array();
 				
 
 				$query = $db -> prepare($sql);
@@ -1096,15 +1210,36 @@
 		}
 
 		//Editerar betyget.
-		public function EditGenre($inputgenre,$inputid)
+		public function EditGenre($inputgenre,$inputoldname)
 		{
 			try{
 				
 
 			$db = $this -> connection();
 			$this->dbTable = self::$tblGenre;
-			$sql = "UPDATE $this->dbTable SET ". self::$genrename ."=? WHERE ". self::$genreid ."=?";
-			$params = array($inputgenre,$inputid);
+			$sql = "UPDATE $this->dbTable SET ". self::$genrename ."=? WHERE ". self::$genrename ."=?";
+			$params = array($inputgenre,$inputoldname);
+
+			$query = $db -> prepare($sql);
+			$query -> execute($params);
+					
+
+			} catch (\PDOException $e) {
+					die('An unknown error have occured.');
+			}
+        
+		}
+
+				//Editerar betyget.
+		public function EditCouplingGenre($inputgenre,$inputoldname)
+		{
+			try{
+				
+
+			$db = $this -> connection();
+			$this->dbTable = self::$tblEventBand;
+			$sql = "UPDATE $this->dbTable SET ". self::$genre ."=? WHERE ". self::$genre ."=?";
+			$params = array($inputgenre,$inputoldname);
 
 			$query = $db -> prepare($sql);
 			$query -> execute($params);
@@ -1132,14 +1267,29 @@
 
 		}
 
-		public function DeleteGenre($inputid)
+		public function DeleteGenre($inputname)
 		{
 
 			$db = $this -> connection();
 			$this->dbTable = self::$tblGenre;
 
-			$sql = "DELETE FROM $this->dbTable WHERE ". self::$genreid ." = ?";
-			$params = array($inputid);
+			$sql = "DELETE FROM $this->dbTable WHERE ". self::$genrename ." = ?";
+			$params = array($inputname);
+
+			$query = $db -> prepare($sql);
+			$query -> execute($params);
+
+
+		}
+
+		public function DeleteCouplingGenre($inputname)
+		{
+
+			$db = $this -> connection();
+			$this->dbTable = self::$tblEventBand;
+
+			$sql = "DELETE FROM $this->dbTable WHERE ". self::$genre ." = ?";
+			$params = array($inputname);
 
 			$query = $db -> prepare($sql);
 			$query -> execute($params);

@@ -47,6 +47,7 @@
 						$chosenid = $this->editgenreview->getGenreID();
 						$neweditgenre = $this->editgenreview->getEditGenre();
 						$loggedinUser = $this->model->getLoggedInUser();
+						$role = $this->db->getDBUserRole($loggedinUser);
 						
 						if($this->editgenreview->didUserPressEditGenreButton())
 						{
@@ -58,10 +59,17 @@
 							
 							if($this->model->ValidateInput($neweditgenre))
 							{
-								if($this->db->checkIfIdManipulatedGenre($chosenid,$loggedinUser))
+								if($role)
+								{
+										$this->db->EditGenre($neweditgenre,$chosenid);
+										$this->db->EditCouplingGenre($neweditgenre,$chosenid);
+										$this->editgenreview->successfulEditGenre();
+								}
+								else if($this->db->checkIfIdManipulatedGenre($chosenid,$loggedinUser))
 								{
 									
 										$this->db->EditGenre($neweditgenre,$chosenid);
+										$this->db->EditCouplingGenre($neweditgenre,$chosenid);
 										$this->editgenreview->successfulEditGenre();
 									
 								}
@@ -89,13 +97,22 @@
 		//anropar vilken vy som ska visas.
 		public function doHTMLBody()
 		{
-			if($this->view->didUserPressEditGenre() && !$this->editgenreview->didUserPressChooseGenreButton() )
+			$loggedinUser = $this->model->getLoggedInUser();
+			$role = $this->db->getDBUserRole($loggedinUser);
+			
+
+			if($this->view->didUserPressEditGenre() && !$this->editgenreview->didUserPressChooseGenreButton() && !$role)
 			{
 			
 				
 				$loggedinUser = $this->model->getLoggedInUser();
 				$fetchgenre = $this->db->fetchGenresWithUser($loggedinUser);
 				$this->editgenreview->ShowEditGenrePage($fetchgenre);
+			}
+			else if($this->view->didUserPressEditGenre() && !$this->editgenreview->didUserPressChooseGenreButton() && $role)
+			{
+				$showGenres = $this->db->fetchShowAllGenres();
+				$this->editgenreview->ShowAdminEditGenrePage($showGenres);
 			}
 			
 
@@ -104,9 +121,9 @@
 				
 				$chgenre = $this->editgenreview->pickedGenreDropdownValue();
 				
-				$fetchid = $this->db->fetchGenresWithID($chgenre);
+				$fetchname = $this->db->fetchGenresWithName($chgenre);
 
-				$this->editgenreview->ShowChosenEditGenrePage($fetchid, $chgenre);
+				$this->editgenreview->ShowChosenEditGenrePage($fetchname, $chgenre);
 			}
 			
 

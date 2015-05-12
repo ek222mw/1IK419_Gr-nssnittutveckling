@@ -33,12 +33,22 @@
 				$pickedid = $this->editratingview->getEditPickedValueSaved();
 				$loggedinUser = $this->loginmodel->getLoggedInUser();
 				$neweditgrade = $this->editratingview->getDropdownPickedEditGrade();
+				$role = $this->db->getDBUserRole($loggedinUser);
 
 				try
 				{
 					if($this->editratingview->didUserPressEditGradeButton())
 					{
-						if($this->db->checkIfIdManipulated($pickedid,$loggedinUser))
+						if($role)
+						{
+							if($this->db->checkIfPickRatingManipulated($neweditgrade))
+							{
+								$this->db->EditGrades($neweditgrade,$pickedid);
+								$this->editratingview->successfulEditGradeToEventWithBand();
+							}
+						}	
+
+						else if($this->db->checkIfIdManipulated($pickedid,$loggedinUser))
 						{
 							if($this->db->checkIfPickRatingManipulated($neweditgrade))
 							{
@@ -62,13 +72,20 @@
 		//Kontrollerar vilket formulär som ska skrivas ut av vyn beroende på vilka olika knappar och/eller länkar användaren tryckt på.
 		public function doHTMLBody()
 		{
+			$loggedinUser = $this->loginmodel->getLoggedInUser();
+			$role = $this->db->getDBUserRole($loggedinUser);
 			
-			if(!$this->editratingview->didUserPressEditPickedButton())
+			if(!$this->editratingview->didUserPressEditPickedButton() && !$role)
 			{
 				$loggedinUser = $this->loginmodel->getLoggedInUser();
 				$loggedinUserwithdetails = $this->db->fetchEditGrades($loggedinUser);
 
 				$this->editratingview->ShowEditRatingPage($loggedinUserwithdetails);
+			}
+			else if(!$this->editratingview->didUserPressEditPickedButton() && $role)
+			{
+				$genre = $this->db->fetchAdminEditGrades();
+				$this->editratingview->ShowEditRatingPage($genre);
 			}
 
 			if($this->editratingview->didUserPressEditPickedButton())
