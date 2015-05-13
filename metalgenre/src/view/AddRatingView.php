@@ -123,6 +123,40 @@
 					$HTMLbody = "<div class='divaddrating'>
 					<h1>Lägg till betyg till valt album med band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 					$contentString<br>
 					</div>";
 
@@ -174,6 +208,40 @@
 					$HTMLbody = "<div class='divaddchosenrating'>
 					<h1>Lägg till betyg till vald spelning med band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 					$contentString<br>
 					</div>";
 
@@ -206,6 +274,40 @@
 					$HTMLbody = "<div class='divshowall'>
 					<h1>Visar alla album med betyg</h1>
 					<p><a href='?login'>Tillbaka</a></p>
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 					$contentString</div>";
 
 					$this->echoHTML($HTMLbody);
@@ -235,7 +337,43 @@
 					$HTMLbody = "<div class='divshowall'>
 					<h1>Visar alla genres</h1>
 					<p><a href='?login'>Tillbaka</a></p>
-					$contentString</div>";
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					$contentString
+
+					</div>";
 
 					$this->echoHTML($HTMLbody);
 
@@ -281,6 +419,40 @@
 					$HTMLbody = "<div class='divshowall'>
 					<h1>$genre</h1>
 					<p><a href='?login'>Tillbaka</a></p>
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 					$contentString</div>";
 
 					$this->echoHTML($HTMLbody);
@@ -322,6 +494,40 @@
 					$HTMLbody = "<div class='divshowall'>
 					<h1>$band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
+					<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 					$contentString</div>";
 
 					$this->echoHTML($HTMLbody);

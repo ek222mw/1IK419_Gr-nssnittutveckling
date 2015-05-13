@@ -193,21 +193,57 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddevent'>
-							<legend>Lägga till nytt band - Skriv in nytt band</legend>
+						<div class='divaddband'>
+							<h3 class='hcolcenter'>Lägga till nytt band - Skriv in nytt band</h3>
 							$this->message
-							<span style='white-space: nowrap'>Band:<br></span> <input type='text' name='$this->createband'><br>
-							<span style='white-space: nowrap'>Biografi:<br></span> <textarea type='text' name='$this->createbiography'></textarea><br>
-							<span style='white-space: nowrap'>Discografi:<br></span> <textarea type='text' name='$this->creatediscography'></textarea><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandbutton'  value='Skapa'>
-						</fieldset>
+							<span style='white-space: nowrap' class='formtext'>Band:<br></span> <input type='text' class='formtext' name='$this->createband'><br>
+							<span style='white-space: nowrap' class='formtext' >Biografi:<br></span> <textarea type='text' class='formtext' name='$this->createbiography'></textarea><br>
+							<span style='white-space: nowrap' class='formtext'>Discografi:<br></span> <textarea type='text' class='formtext' name='$this->creatediscography'></textarea><br>
+							<input type='submit' class='formtext' name='$this->createbandbutton'  value='Skapa'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddevent'>
-					<h1>Skapa nytt band</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					$contentString<br>
-					</div>";
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>Skapa nytt band</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 			}
@@ -220,21 +256,56 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddevent'>
-							<legend>Lägga till nytt album - Skriv in nytt album</legend>
+						<div class='divaddband'>
+							<h3 class='hcolcenter'>Lägga till nytt album - Skriv in nytt album</h3>
 							$this->message
-							<span style='white-space: nowrap'>Album:<br></span> <input type='text' name='$this->createalbum'><br>
-							<span style='white-space: nowrap'>Innehåll:<br></span> <textarea type='text' name='$this->contents'></textarea><br>
-							<span style='white-space: nowrap'>Medverkande:<br></span> <textarea type='text' name='$this->persons'></textarea><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createalbumbutton'  value='Skapa'>
-						</fieldset>
+							<span style='white-space: nowrap' class='formtext'>Album:<br></span> <input type='text' class='formtext' name='$this->createalbum'><br>
+							<span style='white-space: nowrap' class='formtext'>Innehåll:<br></span> <textarea type='text' class='formtext' name='$this->contents'></textarea><br>
+							<span style='white-space: nowrap' class='formtext'>Medverkande:<br></span> <textarea type='text' class='formtext' name='$this->persons'></textarea><br>
+							<input class='formtext' type='submit' name='$this->createalbumbutton'  value='Skapa'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddevent'>
-					<h1>Skapa nytt album</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					$contentString<br>
-					</div>";
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>Skapa nytt album</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 			}
@@ -247,19 +318,54 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Lägga till ny genre - Skriv in genre</legend>
+						<div class='divaddgenre'>
+							<h3 class='hcolcenter'>Lägga till ny genre - Skriv in genre</h3>
 							$this->message
-							<span style='white-space: nowrap'>Genre:</span><input type='text' name='$this->creategenre'><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->creategenrebutton'  value='Skapa'>
-						</fieldset>
+							<span style='white-space: nowrap' class='formtext'>Genre:<br></span><input type='text' class='formtexts' name='$this->creategenre'><br>
+							<input type='submit' class='formtext' name='$this->creategenrebutton'  value='Skapa'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Skapa ny Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					$contentString<br>
-					</div>";
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>Skapa ny Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -276,11 +382,11 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddbandevent'>
-							<legend>Lägga till nytt band till genre</legend>
+						<div class='divaddband'>
+							<h3 class='hcolcenter'>Lägga till nytt band till genre</h3>
 							$this->message
-							<span style='white-space: nowrap'>Genre:</span><br>
-							 <select name='$this->dropdownpickgenre'>";
+							<span style='white-space: nowrap' class='formtext'>Genre:</span><br>
+							 <select class='formtext' name='$this->dropdownpickgenre'>";
 							 foreach($genrelist->toArray() as $genre)
 							 {
 							 	$contentString.= "<option value='". $genre->getName()."'>".$genre->getName()."</option>";
@@ -288,8 +394,8 @@
 							 
 							 $contentString .= "</select>
 							 <br>
-							<span style='white-space: nowrap'>Band:</span><br>
-							<select name='$this->dropdownpickband'>";
+							<span class='formtext' style='white-space: nowrap'>Band:</span><br>
+							<select class='formtext' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -297,17 +403,52 @@
 							 	
 							 }
 							 
-							 $contentString .= "</select><br><br>";
-							$contentString .="<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandeventbutton'  value='Lägg till'>
+							 $contentString .= "</select><br>";
+							$contentString .="<input type='submit' class='formtext' name='$this->createbandeventbutton'  value='Lägg till'>
 
-						</fieldset>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddbandevent'>
-					<h1>Lägg till band till vald genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					$contentString<br>
-					</div>";
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterlong'>Lägg till band till vald genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 			}
@@ -322,11 +463,11 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddbandevent'>
-							<legend>Lägga till nytt band till album</legend>
+						<div class='divaddband'>
+							<h3 class='hcolcenter'>Lägga till nytt band till album</h3>
 							$this->message
-							<span style='white-space: nowrap'>Album:</span><br>
-							 <select name='$this->dropdownpickalbum'>";
+							<span style='white-space: nowrap' class='formtext'>Album:</span><br>
+							 <select class='formtext' name='$this->dropdownpickalbum'>";
 							 foreach($albumlist->toArray() as $album)
 							 {
 							 	$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
@@ -334,8 +475,8 @@
 							 
 							 $contentString .= "</select>
 							 <br>
-							<span style='white-space: nowrap'>Band:</span><br>
-							<select name='$this->dropdownpickband'>";
+							<span class='formtext' style='white-space: nowrap'>Band:</span><br>
+							<select class='formtext' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -343,17 +484,52 @@
 							 	
 							 }
 							 
-							 $contentString .= "</select><br><br>";
-							$contentString .="<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createbandalbumbutton'  value='Lägg till'>
+							 $contentString .= "</select><br>";
+							$contentString .=" <input type='submit' class='formtext' name='$this->createbandalbumbutton'  value='Lägg till'>
 
-						</fieldset>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddbandevent'>
-					<h1>Lägg till band till valt album</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					$contentString<br>
-					</div>";
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterlong'>Lägg till band till valt album</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 			}
@@ -361,7 +537,7 @@
 			//Lägger in, inparameterns sträng i privata variabeln message som sedan skickas till formulären.
 			public function showMessage($message)
 			{
-				$this->message = "<p>" . $message . "</p>";
+				$this->message = "<p class='hcolcenter'>" . $message . "</p>";
 			}
 
 			//Lägger in lyckat lägga till livespelningsmeddelande i funktionen showMessage.

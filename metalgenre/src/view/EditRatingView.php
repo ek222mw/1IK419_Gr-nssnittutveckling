@@ -84,25 +84,60 @@
 			{
 			$contentString .=  "<form method=post >";
 			$contentString .= "
-			<fieldset class='fieldeditrating'><legend>Editera betyg</legend><br>
-			<span class='spangradient' style='white-space: nowrap'>Album:</span>";
-			$contentString.= "<p class='pgradient'>".$grade->getAlbum()."</p>";
-			$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
-			$contentString.= "<p class='pgradient'>".$grade->getGrade()."</p>";
-			$contentString .= "<span class='spangradient' style='white-space: nowrap'>Användare:</span>";
-			$contentString.= "<p class='pgradient'>".$grade->getUser()."</p>"; 
+			<div class='diveditgrade'><h3 class='hcolcenter'>Editera betyg</h3><br>
+			<span class='formtext' style='white-space: nowrap'>Album:</span>";
+			$contentString.= "<p class='formtext'>".$grade->getAlbum()."</p>";
+			$contentString .= "<span class='formtext' style='white-space: nowrap'>Betyg:</span>";
+			$contentString.= "<p class='formtext'>".$grade->getGrade()."</p>";
+			$contentString .= "<span class='formtext' style='white-space: nowrap'>Användare:</span>";
+			$contentString.= "<p class='formtext'>".$grade->getUser()."</p>"; 
 			$contentString.= "<input type='hidden' name='$this->pickededitid' value='". $grade->getID() ."'>";
-			$contentString.= "<input type='submit' name='$this->editbutton' value='Editera'>";
-			$contentString .= "</fieldset>";
+			$contentString.= "<input class='formtext' type='submit' name='$this->editbutton' value='Editera'>";
+			$contentString .= "</div>";
 			$contentString .= "</form>";
 			}
 							 
 
-			$HTMLbody = "<div class='diveditrating'>
-			<h1>Editera betyg till vald spelning med band</h1>
-			<p><a href='?login'>Tillbaka</a></p>
-			$contentString<br>
-			</div>";
+			$HTMLbody = "<div class='divmenu'>
+			<h1 class='hcolcenter'>Editera betyg till vald spelning med band</h1>
+			<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+			<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+			
+			</div>
+			$contentString";
 
 			$this->echoHTML($HTMLbody);
 		}
@@ -148,6 +183,40 @@
 			$HTMLbody = "<div class='divchoseneditrating'>
 			<h1>Editera betyg till vald spelning med band</h1>
 			<p><a href='?editrating'>Tillbaka</a></p>
+			<h2>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
 			$contentString
 			</div>";
 

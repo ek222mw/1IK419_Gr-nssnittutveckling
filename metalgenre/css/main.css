@@ -127,6 +127,7 @@ legend {
 
 nav ul ul {
 	display: none;
+	z-index: 10;
 }
 
 nav ul li:hover > ul {
