@@ -99,7 +99,7 @@
 							 
 
 			$HTMLbody = "<div class='divmenu'>
-			<h1 class='hcolcenter'>Editera betyg till vald spelning med band</h1>
+			<h1 class='hcenterlong'>Editera betyg på album</h1>
 			<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 			<h2 class='h2menu'>Meny</h2>
 				<nav>

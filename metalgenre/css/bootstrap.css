@@ -6330,11 +6330,13 @@ input[type="submit"]:active {
   background-color: #4B0000;
   border-radius: 2%;
   margin-left:auto;
-  margin-right:auto;
-  
+  margin-right:1%;
+  position: relative;
+  left:10%;
+  display:inline;
   width:15%;
   padding-bottom:1%;
-  float:middle;
+  float:left;
 }
 
 .divaddgenre{
