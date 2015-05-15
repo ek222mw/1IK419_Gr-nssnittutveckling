@@ -82,10 +82,10 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Välj genre att editera </legend>
+						<div class='diveditgenre'>
+							<h3 class='hcolcentereditgenre'>Välj genre att editera </h3>
 							$this->message
-							<select name='dropdownpickeditgenre'>";
+							<select class='formtexteditgenre' name='dropdownpickeditgenre'>";
 
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
@@ -93,16 +93,16 @@
 									$contentString.= "<option value='". $chooseedit->getName()."'>".$chooseedit->getName()."</option>";
 								}
 										 
-								$contentString .= "</select>
+								$contentString .= "</select><br>
 
-							<span style='white-space: nowrap'></span> <input type='submit' name='$this->chooseeditgenrebutton'  value='Välj genre'>
-						</fieldset>
+							<input type='submit' class='formtexteditgenre' name='$this->chooseeditgenrebutton'  value='Välj genre'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Editera Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterchedit'>Editera Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -136,8 +136,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -150,10 +151,10 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Välj genre att editera </legend>
+						<div class='diveditgenre'>
+							<h3 class='hcolcentereditgenre'>Välj genre att editera </h3>
 							$this->message
-							<select name='dropdownpickeditgenre'>";
+							<select class='formtexteditgenre' name='dropdownpickeditgenre'>";
 
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
@@ -161,16 +162,16 @@
 									$contentString.= "<option value='". $chooseedit->getName()."'>".$chooseedit->getName()."</option>";
 								}
 										 
-								$contentString .= "</select>
+								$contentString .= "</select><br>
 
-							<span style='white-space: nowrap'></span> <input type='submit' name='$this->chooseeditgenrebutton'  value='Välj genre'>
-						</fieldset>
+							<input type='submit' class='formtexteditgenre' name='$this->chooseeditgenrebutton'  value='Välj genre'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Editera Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterchedit'>Editera Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -204,8 +205,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -218,26 +220,26 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Skriv in nytt genre namn </legend>
+						<div class='diveditgenre'>
+							<h3 class='hcolcentercheditgenre'>Skriv in nytt genre namn</h3>
 							$this->message";
 
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
 									
-									$contentString.= "<span style='white-space: nowrap'>Genre:</span><input type='text' name='$this->editgenre' value='".$chooseedit->getName() ."'><br>";
+									$contentString.= "<span class='formtextcheditgenre' style='white-space: nowrap'>Genre:<br></span><input type='text' class='formtextscheditgenre' name='$this->editgenre' value='".$chooseedit->getName() ."'><br>";
 								}
-								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->editid' value='$name'><br>";
+								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->editid' value='$name'>";
 										 
 								
-							$contentString .="<span style='white-space: nowrap'></span> <input type='submit' name='$this->editgenrebutton'  value='Editera'>
-						</fieldset>
+							$contentString .="<input type='submit' class='formtextcheditgenre' name='$this->editgenrebutton'  value='Editera'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Editera Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterchedit'>Editera Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -271,8 +273,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 

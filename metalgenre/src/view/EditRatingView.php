@@ -82,17 +82,17 @@
 			$contentString = "$this->message";
 			foreach($gradelist->toArray() as $grade)
 			{
-			$contentString .=  "<form method=post >";
+			$contentString .=  "<form class='editgradeform' method=post >";
 			$contentString .= "
 			<div class='diveditgrade'><h3 class='hcolcenter'>Editera betyg</h3><br>
-			<span class='formtext' style='white-space: nowrap'>Album:</span>";
-			$contentString.= "<p class='formtext'>".$grade->getAlbum()."</p>";
-			$contentString .= "<span class='formtext' style='white-space: nowrap'>Betyg:</span>";
-			$contentString.= "<p class='formtext'>".$grade->getGrade()."</p>";
-			$contentString .= "<span class='formtext' style='white-space: nowrap'>Användare:</span>";
-			$contentString.= "<p class='formtext'>".$grade->getUser()."</p>"; 
+			<span class='formtexteditgrade' style='white-space: nowrap'>Album:</span>";
+			$contentString.= "<p class='formtexteditgrade'>".$grade->getAlbum()."</p>";
+			$contentString .= "<span class='formtexteditgrade' style='white-space: nowrap'>Betyg:</span>";
+			$contentString.= "<p class='formtexteditgrade'>".$grade->getGrade()."</p>";
+			$contentString .= "<span class='formtexteditgrade' style='white-space: nowrap'>Användare:</span>";
+			$contentString.= "<p class='formtexteditgrade'>".$grade->getUser()."</p>"; 
 			$contentString.= "<input type='hidden' name='$this->pickededitid' value='". $grade->getID() ."'>";
-			$contentString.= "<input class='formtext' type='submit' name='$this->editbutton' value='Editera'>";
+			$contentString.= "<input class='formtexteditgrade' type='submit' name='$this->editbutton' value='Editera'>";
 			$contentString .= "</div>";
 			$contentString .= "</form>";
 			}

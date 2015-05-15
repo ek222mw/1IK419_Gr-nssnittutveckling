@@ -194,11 +194,11 @@
 					 "
 					<form method=post >
 						<div class='divaddband'>
-							<h3 class='hcolcenter'>Lägga till nytt band - Skriv in nytt band</h3>
-							$this->message
+							<h3 class='hcolcenteradd'>Lägga till nytt band - Skriv in nytt band</h3>
+							<p class='formtext'>$this->message</p>
 							<span style='white-space: nowrap' class='formtext'>Band:<br></span> <input type='text' class='formtext' name='$this->createband'><br>
-							<span style='white-space: nowrap' class='formtext' >Biografi:<br></span> <textarea type='text' class='formtext' name='$this->createbiography'></textarea><br>
-							<span style='white-space: nowrap' class='formtext'>Discografi:<br></span> <textarea type='text' class='formtext' name='$this->creatediscography'></textarea><br>
+							<span style='white-space: nowrap' class='formtext' >Biografi:<br></span> <textarea type='text' class='formtextarea' name='$this->createbiography'></textarea><br>
+							<span style='white-space: nowrap' class='formtext'>Discografi:<br></span> <textarea type='text' class='formtextarea' name='$this->creatediscography'></textarea><br>
 							<input type='submit' class='formtext' name='$this->createbandbutton'  value='Skapa'>
 						</div>
 					</form>";
@@ -257,12 +257,12 @@
 					 "
 					<form method=post >
 						<div class='divaddband'>
-							<h3 class='hcolcenter'>Lägga till nytt album - Skriv in nytt album</h3>
-							$this->message
-							<span style='white-space: nowrap' class='formtext'>Album:<br></span> <input type='text' class='formtext' name='$this->createalbum'><br>
-							<span style='white-space: nowrap' class='formtext'>Innehåll:<br></span> <textarea type='text' class='formtext' name='$this->contents'></textarea><br>
-							<span style='white-space: nowrap' class='formtext'>Medverkande:<br></span> <textarea type='text' class='formtext' name='$this->persons'></textarea><br>
-							<input class='formtext' type='submit' name='$this->createalbumbutton'  value='Skapa'>
+							<h3 class='hcolcenteraddalbum'>Lägga till nytt album - Skriv in nytt album</h3>
+							<p class='formtextalbum'>$this->message</p>
+							<span style='white-space: nowrap' class='formtextalbum'>Album:<br></span> <input type='text' class='formtextalbum' name='$this->createalbum'><br>
+							<span style='white-space: nowrap' class='formtextalbum'>Innehåll:<br></span> <textarea type='text' class='formtextareaalbum' name='$this->contents'></textarea><br>
+							<span style='white-space: nowrap' class='formtext'>Medverkande:<br></span> <textarea type='text' class='formtextareaalbum' name='$this->persons'></textarea><br>
+							<input class='formtextalbum' type='submit' name='$this->createalbumbutton'  value='Skapa'>
 						</div>
 					</form>";
 
@@ -319,10 +319,10 @@
 					 "
 					<form method=post >
 						<div class='divaddgenre'>
-							<h3 class='hcolcenter'>Lägga till ny genre - Skriv in genre</h3>
-							$this->message
-							<span style='white-space: nowrap' class='formtext'>Genre:<br></span><input type='text' class='formtexts' name='$this->creategenre'><br>
-							<input type='submit' class='formtext' name='$this->creategenrebutton'  value='Skapa'>
+							<h3 class='hcolcenteraddgenre'>Lägga till ny genre - Skriv in genre</h3>
+							<p class='formtextgenre'>$this->message</p>
+							<span style='white-space: nowrap' class='formtextgenre'>Genre:<br></span><input type='text' class='formtextsgenre' name='$this->creategenre'><br>
+							<input type='submit' class='formtextgenre' name='$this->creategenrebutton'  value='Skapa'>
 						</div>
 					</form>";
 
@@ -383,10 +383,10 @@
 					 "
 					<form method=post >
 						<div class='divaddband'>
-							<h3 class='hcolcenter'>Lägga till nytt band till genre</h3>
-							$this->message
-							<span style='white-space: nowrap' class='formtext'>Genre:</span><br>
-							 <select class='formtext' name='$this->dropdownpickgenre'>";
+							<h3 class='hcolcenterbandtogenre'>Lägga till band till genre</h3>
+							<p class='formtextbandtogenre'>$this->message</p>
+							<span style='white-space: nowrap' class='formtextbandtogenre'>Genre:</span><br>
+							 <select class='formtextbandtogenre' name='$this->dropdownpickgenre'>";
 							 foreach($genrelist->toArray() as $genre)
 							 {
 							 	$contentString.= "<option value='". $genre->getName()."'>".$genre->getName()."</option>";
@@ -394,8 +394,8 @@
 							 
 							 $contentString .= "</select>
 							 <br>
-							<span class='formtext' style='white-space: nowrap'>Band:</span><br>
-							<select class='formtext' name='$this->dropdownpickband'>";
+							<span class='formtextbandtogenre' style='white-space: nowrap'>Band:</span><br>
+							<select class='formtextbandtogenre' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -404,7 +404,7 @@
 							 }
 							 
 							 $contentString .= "</select><br>";
-							$contentString .="<input type='submit' class='formtext' name='$this->createbandeventbutton'  value='Lägg till'>
+							$contentString .="<input type='submit' class='formtextbandtogenre' name='$this->createbandeventbutton'  value='Lägg till'>
 
 						</div>
 					</form>";
@@ -464,10 +464,10 @@
 					 "
 					<form method=post >
 						<div class='divaddband'>
-							<h3 class='hcolcenter'>Lägga till nytt band till album</h3>
-							$this->message
-							<span style='white-space: nowrap' class='formtext'>Album:</span><br>
-							 <select class='formtext' name='$this->dropdownpickalbum'>";
+							<h3 class='hcolcenterbandtoalbum'>Lägga till band till album</h3>
+							<p class='formtextbandtoalbum'>$this->message</p>
+							<span style='white-space: nowrap' class='formtextbandtoalbum'>Album:</span><br>
+							 <select class='formtextbandtoalbum' name='$this->dropdownpickalbum'>";
 							 foreach($albumlist->toArray() as $album)
 							 {
 							 	$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
@@ -475,8 +475,8 @@
 							 
 							 $contentString .= "</select>
 							 <br>
-							<span class='formtext' style='white-space: nowrap'>Band:</span><br>
-							<select class='formtext' name='$this->dropdownpickband'>";
+							<span class='formtextbandtoalbum' style='white-space: nowrap'>Band:</span><br>
+							<select class='formtextbandtoalbum' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -485,7 +485,7 @@
 							 }
 							 
 							 $contentString .= "</select><br>";
-							$contentString .=" <input type='submit' class='formtext' name='$this->createbandalbumbutton'  value='Lägg till'>
+							$contentString .=" <input type='submit' class='formtextbandtoalbum' name='$this->createbandalbumbutton'  value='Lägg till'>
 
 						</div>
 					</form>";
@@ -537,7 +537,7 @@
 			//Lägger in, inparameterns sträng i privata variabeln message som sedan skickas till formulären.
 			public function showMessage($message)
 			{
-				$this->message = "<p class='hcolcenter'>" . $message . "</p>";
+				$this->message = $message;
 			}
 
 			//Lägger in lyckat lägga till livespelningsmeddelande i funktionen showMessage.

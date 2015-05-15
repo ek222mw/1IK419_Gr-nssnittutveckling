@@ -589,7 +589,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 20px;
+  margin-top: 1%;
   margin-bottom: 10px;
 
   
@@ -6326,17 +6326,36 @@ input[type="submit"]:active {
   padding-bottom:1%;
 }
 
+.diveditgenre{
+  background-color: #4B0000;
+  border-radius: 2%;
+  margin-right:auto;
+  margin-left:30%;
+  width:38.5%;
+  padding-bottom:1%;
+}
+
 .diveditgrade{
   background-color: #4B0000;
   border-radius: 2%;
-  margin-left:auto;
-  margin-right:1%;
-  position: relative;
-  left:10%;
-  display:inline;
-  width:15%;
   padding-bottom:1%;
-  float:left;
+  margin-right:1%;
+  
+  left:10%;
+  position: relative;
+  
+ 
+  
+  
+}
+
+.editgradeform{
+  
+  width:16.1%;
+  display:inline-block;
+ 
+  
+
 }
 
 .divaddgenre{
@@ -6362,6 +6381,11 @@ input[type="submit"]:active {
   margin-left:14%;
 }
 
+.hcenterchedit{
+
+  margin-left:16%;
+}
+
 .hcenterlong{
   margin-left:5%;
 }
@@ -6369,15 +6393,107 @@ input[type="submit"]:active {
 .hcolcenter
 {
   padding-top: 1%;
+  margin-left:16%;
+}
+
+.hcolcenterbandtogenre
+{
+  padding-top: 1%;
+  margin-left:25%;
+}
+
+.hcolcenterbandtoalbum
+{
+  padding-top: 1%;
+  margin-left:25%;
+}
+
+.hcolcenteradd
+{
+  padding-top: 1%;
   margin-left:12%;
+}
+
+.hcolcenteraddgenre
+{
+  padding-top: 1%;
+  margin-left:14.5%;
+}
+
+.hcolcenteraddalbum
+{
+  padding-top: 1%;
+  margin-left:9%;
+}
+
+.hcolcentereditgenre
+{
+  padding-top: 1%;
+  margin-left:27%;
+}
+
+.hcolcentercheditgenre
+{
+  padding-top: 1%;
+  margin-left:25%;
 }
 
 .formtext{
   margin-left:12%;
 }
 
+.formtextgenre{
+  margin-left:14.5%;
+}
+
+.formtexteditgenre{
+  margin-left:27%;
+}
+
+.formtextcheditgenre{
+  margin-left:25%;
+}
+
+.formtextbandtogenre{
+  margin-left:25%;
+}
+
+.formtextbandtoalbum{
+  margin-left:25%;
+}
+
+.formtextalbum{
+  margin-left:9%;
+}
+
+.formtexteditgrade{
+  margin-left:30%;
+}
+.formtextarea{
+  margin-left:12%;
+  width:32.4%;
+
+}
+
+.formtextareaalbum{
+  margin-left:9%;
+  width:32.4%;
+
+}
+
+
+
 .formtexts{
   margin-left:12%;
+  margin-bottom:1%;
+}
+
+.formtextsgenre{
+  margin-left:14.5%;
+  margin-bottom:1%;
+}
+.formtextscheditgenre{
+  margin-left:25%;
   margin-bottom:1%;
 }
 
