@@ -164,6 +164,7 @@ video {
 	background: white;
 	display: inline;
 	float: left;
+  left:11%;
 	margin: 0 15px 30px;
 	padding: 10px 10px 25px;
 	text-align: center;
@@ -175,7 +176,7 @@ video {
 	-moz-transition: all .15s linear;
 	transition: all .15s linear;
 	z-index:0;
-        position:relative;
+  position:relative;
 }
 .Gallery a:after {
 	color: #333;
@@ -188,8 +189,8 @@ video {
 .Gallery img { 
 	display: block; 
 	
-	width:300px;
-	height:200px;
+	width:15%;
+	height:10%;
     
    
     
@@ -216,6 +217,75 @@ video {
 	z-index:10;
 	-webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
 	-moz-box-shadow: 0 10px 20px rgba(0,0,0,.7);
+        box-shadow: 0 10px 20px rgba(0,0,0,.7);
+}
+
+
+
+.Gallery1 a
+{
+  background: white;
+  display: inline-block;
+  float: left;
+  width:30%;
+  border-radius: 5%;
+  margin: 0 2% 4%;
+  margin-top: 2%;
+  left:30%;
+  padding: 2% 2% 4%;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
+  box-shadow: 0 4px 6px rgba(0,0,0,.3);
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+  z-index:0;
+  position:relative;
+}
+.Gallery1 a:after {
+  color: #333;
+  font-size: 97%;
+  
+  width:50%;
+  content: attr(title);
+  
+  position: relative;
+  top:15%;
+  
+}
+.Gallery1 img { 
+  display: block; 
+  
+  width:70%;
+  height:40%;
+    
+   
+    
+}
+.Gallery1 a:nth-child(2)
+{
+  -webkit-transform: rotate(0deg);  
+  -moz-transform: rotate(0deg); 
+  transform: rotate(0deg); 
+}
+.Gallery1 a:nth-child(3) { 
+  -webkit-transform: rotate(0deg);  
+  -moz-transform: rotate(0deg); 
+  transform: rotate(0deg); 
+}
+
+.Gallery1 a:focus, .Gallery1 a:hover {
+  -webkit-transform: rotate(0deg); 
+  -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+  -webkit-transform: scale(1.2); 
+  -moz-transform: scale(1.2);
+        transform: scale(1.2);
+  z-index:10;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, .7);
+  -moz-box-shadow: 0 10px 20px rgba(0,0,0,.7);
         box-shadow: 0 10px 20px rgba(0,0,0,.7);
 }
 
@@ -461,7 +531,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 140%;
   line-height: 1.42857143;
   color: #333;
   background-color:#251E1E;
@@ -6213,14 +6283,16 @@ input {
 }
 
 .img{
-  width:300px;
-  height:200px;
+  width:50%;
+  max-height:200px;
+  margin-top:3%;
+  border-radius: 3%;
 }
 
 .nobr{
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
+    left: 47%;
+    position: relative;
+    white-space: nowrap;
 }
 
 span{
@@ -6326,6 +6398,29 @@ input[type="submit"]:active {
   padding-bottom:1%;
 }
 
+.divshowspecgenre{
+  background-color: #4B0000;
+  margin-right: 1%;
+  border-radius: 2%;
+  left:11%;
+  position: relative;
+  margin-bottom: 1%;
+  display:inline-block;
+  width:39%;
+
+  float:left;
+  height: 60em;
+  overflow-y:scroll;
+  
+ 
+}
+
+.divshowspecgenreout{
+ 
+
+
+}
+
 .diveditgenre{
   background-color: #4B0000;
   border-radius: 2%;
@@ -6333,6 +6428,17 @@ input[type="submit"]:active {
   margin-left:30%;
   width:38.5%;
   padding-bottom:1%;
+}
+
+.centercol
+{
+  text-align: center;
+}
+
+.textcol
+{
+  padding-right:4%;
+  padding-left:4%;
 }
 
 .diveditgrade{
@@ -6365,6 +6471,9 @@ input[type="submit"]:active {
   margin-left:30%;
   width:38.5%;
   padding-bottom:1%;
+}
+.divshowgenre{
+  display:inline-block;
 }
 
 

@@ -334,10 +334,10 @@
 
 					
 
-					$HTMLbody = "<div class='divshowall'>
-					<h1>Visar alla genres</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>Visar alla genres</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -371,9 +371,10 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString
+					
 
-					</div>";
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -382,44 +383,51 @@
 
 			public function ShowGenre(BandList $showbandlist, $genre)
 			{
-				
-					$contentString ="<form method=post >";
-						//standard bild från adress http://suptg.thisisnotatrueending.com/archive/5237253/images/1248382528677.png
+				$contentString ="<form  method=post>";
 					
-					$dir = "././Pics/*.jpg";
-					//get the list of all files with .jpg extension in the directory and safe it in an array named $images
-					$images = glob( $dir );
+
 					foreach($showbandlist->toArray() as $band)
 					{
+						$contentString .= "<div class='divshowspecgenreout'>";
+						//standard bild från adress http://suptg.thisisnotatrueending.com/archive/5237253/images/1248382528677.png
+					
+						$dir = "././Pics/*.jpg";
+						//get the list of all files with .jpg extension in the directory and safe it in an array named $images
+						$images = glob( $dir );
 							 	
-						$contentString .= "<fieldset class='fieldshowall'>";
+						
+						 $contentString .="<div class='divshowspecgenre'>";
 							
 						foreach( $images as $image )
 						{
+
 						
 							if($image === $band->getImgpath())
 							{
 								$contentString.= "<img class='img' src='" . $image . "' />";
 							}
 						}
-						$contentString .= "<h3>Band</h3>";
-						$contentString.= "<p class='pgradient'>".$band->getName()."</p>";
-						$contentString.= "<h3>Biografi</h3>";
-						$contentString.= "<p class='pgradient'>".$band->getBioGraphy()."</p>";
-						$contentString.="<h3>Discografi</h3>";
-						$contentString.= "<p class='pgradient'>".$band->getDiscoGraphy()."</p><br>";
-						$contentString .= "<a href='?showgenres&albumname=".$band->getName()."'>Show Albums</a> ";
-						$contentString .= "</fieldset>";
+						$contentString .= "<h3 class='centercol'>Band</h3>";
+						$contentString.= "<p class='centercol'>".$band->getName()."</p>";
+						$contentString.= "<h3 class='centercol'>Biografi</h3>";
+						$contentString.= "<p class='textcol'>".$band->getBioGraphy()."</p>";
+						$contentString.="<h3 class='centercol'>Discografi</h3>";
+						$contentString.= "<p class='textcol'>".$band->getDiscoGraphy()."</p>";
+						$contentString .= "<div class='Gallery1'><a title='Show Albums' href='?showgenres&albumname=".$band->getName()."'><img src='././Pics/bandlink.jpg' /></a></div> ";
+						$contentString .= "</div></div>";
+
 					}
-							 
 					$contentString .= "</form>";
+
+							 
+					
 
 					
 
-					$HTMLbody = "<div class='divshowall'>
-					<h1>$genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>$genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -453,7 +461,8 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString</div>";
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -471,27 +480,28 @@
 						$grade = $this->db->fetchShowGrade($album->getName());
 						
 							
-						$contentString .= "<fieldset class='fieldshowall'>";
-						$contentString.= "<h3>Betyg</h3>";
+						$contentString .= "<div class='divshowspecgenre'>";
+						$contentString.= "<h3 class='centercol'>Betyg</h3>";
 						foreach ($grade as $value) {
-							
-							$contentString.= "<NOBR class='nobr'>".$value[0].", </NOBR>";
+
+								$contentString.= "<nobr class='nobr'>".$value[0].", <wbr></nobr>";
+						
 						}
 						
-						$contentString.= "<h3>Album</h3>";
-						$contentString.= "<p class='pgradient'>".$album->getName()."</p>";
-						$contentString.= "<h3>Innehåll</h3>";
-						$contentString.= "<p class='pgradient'>".$album->getContents()."</p>";
-						$contentString.="<h3>Personer</h3>";
-						$contentString.= "<p class='pgradient'>".$album->getPersons()."</p>";
-						$contentString .= "</fieldset>";
+						$contentString.= "<h3 class='centercol'>Album</h3>";
+						$contentString.= "<p class='centercol'>".$album->getName()."</p>";
+						$contentString.= "<h3 class='centercol'>Innehåll</h3>";
+						$contentString.= "<p class='textcol'>".$album->getContents()."</p>";
+						$contentString.="<h3 class='centercol'>Personer</h3>";
+						$contentString.= "<p class='textcol'>".$album->getPersons()."</p>";
+						$contentString .= "</div>";
 					}
 							 
 					$contentString .= "</form>";
 
 					
 
-					$HTMLbody = "<div class='divshowall'>
+					$HTMLbody = "<div class='divmenu'>
 					<h1>$band</h1>
 					<p><a href='?login'>Tillbaka</a></p>
 					<h2>Meny</h2>
@@ -528,7 +538,8 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString</div>";
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
