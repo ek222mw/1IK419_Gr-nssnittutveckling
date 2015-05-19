@@ -96,11 +96,12 @@
 					
 	
 					$contentString = "
-					<form method=post ><fieldset class='fieldaddrating'>
-					<legend>Lägga till nytt betyg till album med följande band</legend>
+					<form method=post >
+					<div class='diveditgenre'>
+					<h3 class='centercol'>Lägga till nytt betyg till album med följande band</h3>
 					$this->message
-					<span style='white-space: nowrap'>Album:</span>
-					<select name='dropdownpickalbum'>";
+					<p class='centercol'>Album:</p>
+					<select class='hcolcenterall' name='dropdownpickalbum'>";
 
 					foreach($albumbandlist->toArray() as $album)
 					{
@@ -108,8 +109,8 @@
 					}
 							 
 					$contentString .= "</select><br>";
-					$contentString .= "<span style='white-space: nowrap'>Betyg:</span>
-					<select name='$this->dropdownpickgrade'>";
+					$contentString .= "<p class='centercol' >Betyg:</p>
+					<select class='hcolcenterall' name='$this->dropdownpickgrade'>";
 
 					foreach($gradelist->toArray() as $grade)
 					{
@@ -117,13 +118,13 @@
 					}
 							 
 					$contentString .= "</select><br>";
-					$contentString .= "Skicka: <input type='submit' name='$this->creategradebutton'  value='Lägg till Betyg'>";		 
-					$contentString .= "</fieldset></form>";
+					$contentString .= "<input type='submit' class='hcolcenterall' name='$this->creategradebutton'  value='Lägg till Betyg'>";		 
+					$contentString .= "</div></form>";
 
-					$HTMLbody = "<div class='divaddrating'>
-					<h1>Lägg till betyg till valt album med band</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterxlong'>Lägg till betyg till valt album med band</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -157,8 +158,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 			
@@ -253,28 +255,29 @@
 			public function ShowAllAlbumsWithGrades(ShowEventList $showeventlist)
 			{
 				
-					$contentString ="<form method=post >";
+					$contentString ="<form  method=post >";
 	
 					foreach($showeventlist->toArray() as $event)
 					{
-							 	
-						$contentString .= "<fieldset class='fieldshowall'><span class='spangradient'  style='white-space: nowrap'>Album:</span>";
-						$contentString.= "<p class='pgradient'>".$event->getAlbum()."</p>";
-						$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
-						$contentString.= "<p class='pgradient'>".$event->getGrade()."</p>";
-						$contentString .= "<span class='spangradient' style='white-space: nowrap'>Användare:</span>";
-						$contentString.= "<p class='pgradient'>".$event->getUser()."</p>";
-						$contentString .= "</fieldset>";
+						
+						$contentString .= "<div class='divshowspecgrade'>
+						<p class='centercol'>Album:</p>";
+						$contentString.= "<p class='centercol'>".$event->getAlbum()."</p>";
+						$contentString .= "<p class='centercol' >Betyg:</p>";
+						$contentString.= "<p class='centercol'>".$event->getGrade()."</p>";
+						$contentString .= "<p class='centercol'>Användare:</p>";
+						$contentString.= "<p class='centercol'>".$event->getUser()."</p>";
+						$contentString .= "</div>";
 					}
 							 
 					$contentString .= "</form>";
 
 					
 
-					$HTMLbody = "<div class='divshowall'>
-					<h1>Visar alla album med betyg</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterlong'>Visar alla album med betyg</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -308,7 +311,8 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString</div>";
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -425,7 +429,7 @@
 					
 
 					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcenter'>$genre</h1>
+					<h1 class='hcentershowgenre'>$genre</h1>
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -478,9 +482,20 @@
 					foreach($showalbumlist->toArray() as $album)
 					{	
 						$grade = $this->db->fetchShowGrade($album->getName());
-						
+						$dir = "././Pics/*.jpg";
+						//get the list of all files with .jpg extension in the directory and safe it in an array named $images
+						$images = glob( $dir );
 							
 						$contentString .= "<div class='divshowspecgenre'>";
+						foreach( $images as $image )
+						{
+
+						
+							if($image === $album->getImgpath())
+							{
+								$contentString.= "<img class='img' src='" . $image . "' />";
+							}
+						}
 						$contentString.= "<h3 class='centercol'>Betyg</h3>";
 						foreach ($grade as $value) {
 
@@ -502,9 +517,9 @@
 					
 
 					$HTMLbody = "<div class='divmenu'>
-					<h1>$band</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					<h1 class='hcentershowgenre'>$band</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -550,13 +565,13 @@
 			//Lägger in, inparameterns sträng i privata variabeln message som sedan skickas till formulären.
 			public function showMessage($message)
 			{
-				$this->message = "<p>" . $message . "</p>";
+				$this->message = "<p class='centercol'>" . $message . "</p>";
 			}
 
 			//Lägger in lyckat lägga till betyg till livespelning med band meddelande i funktionen showMessage.
 			public function successfulAddGradeToEventWithBand()
 			{
-				$this->showMessage("Betyget har lagts till livespelning med band!");
+				$this->showMessage("Betyget har lagts till album med band!");
 			}
 
 

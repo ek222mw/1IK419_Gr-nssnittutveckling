@@ -36,12 +36,13 @@
 		private static $role = "role";
 		private static $album = "album";
 		private static $albums = "albums";
+		private static $tblalbums = "m_albums";
 		private static $albumid = "albumid";
 		private static $albumname = "name";
 		private static $imgpath = "imgpath";
 		private static $albumcontents = "contents";
 		private static $albumpersons = "persons";
-		private static $tblalbumband ="albumband";
+		private static $tblalbumband ="m_albumband";
 		private static $bandName = "name";
 		private static $biography = "biography";
 		private static $discography = "discography";
@@ -49,12 +50,12 @@
 		private static $username = "username";
 		private static $password = "password";
 		private static $rating = "rating";
-		private static $tblUser = "user";
-		private static $tblband = "bands";
-		private static $tblGenre = "genres";
-		private static $tblEventBand = "eventband";
-		private static $tblSummaryGrade = "summarygrade";
-		private static $tblRating = "rating";
+		private static $tblUser = "m_user";
+		private static $tblband = "m_bands";
+		private static $tblGenre = "m_genres";
+		private static $tblEventBand = "m_eventband";
+		private static $tblSummaryGrade = "m_summarygrade";
+		private static $tblRating = "m_rating";
 		private static $colId = "id";
 		private static $colusername = "username";
 		private static $colevent = "event";
@@ -255,7 +256,7 @@
 		{
 
 				$db = $this -> connection();
-				$this->dbTable = self::$albums;
+				$this->dbTable = self::$tblalbums;
 				$sql = "SELECT ". self::$albumname ." FROM `$this->dbTable` WHERE ". self::$albumname ." = ?";
 				$params = array($inputalbum);
 
@@ -546,7 +547,7 @@
 		public function checkIfPickAlbumFromAlbumTableIsManipulated($pickedalbum)
 		{
 				$db = $this -> connection();
-				$this->dbTable = self::$albums;
+				$this->dbTable = self::$tblalbums;
 				$sql = "SELECT ". self::$albumname ." FROM `".$this->dbTable."` WHERE ". self::$albumname ." = ?";
 				$params = array($pickedalbum);
 
@@ -643,7 +644,7 @@
 		{
 
 				$db = $this -> connection();
-				$this->dbTable = self::$albums;
+				$this->dbTable = self::$tblalbums;
 				$sql = "SELECT * FROM `$this->dbTable`";
 				
 
@@ -878,7 +879,7 @@
 		{
 				$db = $this -> connection();
 				$this->dbTable = self::$tblband;
-				$sql = "SELECT * FROM  `$this->dbTable` as bands INNER JOIN `eventband` as `ev` ON `ev`.`band` = `bands`.`name` where `ev`.`genre` = ?  ";
+				$sql = "SELECT * FROM  `$this->dbTable` as bands INNER JOIN `m_eventband` as `ev` ON `ev`.`band` = `bands`.`name` where `ev`.`genre` = ?  ";
 				$params = array($genrename);
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -897,8 +898,8 @@
 		public function fetchBand($bandname)
 		{
 				$db = $this -> connection();
-				$this->dbTable = self::$albums;
-				$sql = "SELECT * FROM  `$this->dbTable` as album INNER JOIN `albumband` as `ab` ON `ab`.`album` = `album`.`name` where `ab`.`band` = ?  ";
+				$this->dbTable = self::$tblalbums;
+				$sql = "SELECT * FROM  `$this->dbTable` as album INNER JOIN `m_albumband` as `ab` ON `ab`.`album` = `album`.`name` where `ab`.`band` = ?  ";
 				$params = array($bandname);
 				$query = $db -> prepare($sql);
 				$query -> execute($params);
@@ -907,7 +908,7 @@
 				
 				$albums = new AlbumList();
 				foreach ($result as $albumdb) {
-					$album = new Album($albumdb[self::$albumname], $albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons]);
+					$album = new Album($albumdb[self::$albumname], $albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons], $albumdb[self::$imgpath] );
 					$albums->add($album);
 
 				}
@@ -1175,7 +1176,7 @@
 		public function addAlbum($inputalbum, $inputcontents, $inputpersons) {
 				try {
 					$db = $this -> connection();
-					$this->dbTable = self::$albums;
+					$this->dbTable = self::$tblalbums;
 
 					$sql = "INSERT INTO $this->dbTable (".self::$albumname.",".self::$albumcontents .",".self::$albumpersons .") VALUES (?,?,?)";
 					$params = array($inputalbum, $inputcontents,$inputpersons);

@@ -204,22 +204,22 @@
 				
 				
 					
-				$this->welcomemessage = "<h1 class='h1welcome'>Välkommen till Music-Live Review</h1>
+				$this->welcomemessage = "<h1 class='h1welcome'>Välkommen till MetalGenre.se</h1>
 				<h2 class='h2welcome'>Logga in för att se menyn. Utan konto? Registrera dig och logga in.</h2>
-				<div class='divwelcome'>Musik Live Review handlar om att sätta betyg på livespelningar med band, det är ett lätt sätt att se på vilken livespelning som ett band presterar bäst.
-				När du loggat in kan du lägga till livespelningar,band och koppla band till livespelningar. Du kan även Lägga till, editera och ta bort betyg på livespelningar med band.</div>";
+				<div class='divwelcome'>MetalGenre handlar om att lägga till, editera och ta bort betyg på album med band. Samt lägga till, editera och ta bort genrer som man själv har skapat. Går att lägga till band och album.
+				När du loggat in kan du se meny med de olika alternativen.</div>";
 				$this->loginStatus = "Ej inloggad";
 
 				$contentString = 
 					"<form id='loginForm' method=post action='?login'>
-						<fieldset>
-							<legend class='legendgradient'>Login - Skriv in användarnamn och lösenord</legend>
-							$this->message
-							<span class='spangradient' style='white-space: nowrap'>Namn:</span> <input type='text' name='$this->username' value='" . $this->getInputUsername() . "'>
-							<span class='spangradient' style='white-space: nowrap'>Lösenord:</span> <input type='password' name='$this->password'><br> 
-							<span class='spangradient' style='white-space: nowrap'>Håll mig inloggad:</span><input type='checkbox' name='$this->checkbox' value='checked'><br><br>
-							<button type='submit' name='button' form='loginForm' value='Submit'>Logga in</button>
-						</fieldset>
+						<div>
+							<h3 class='centercol'>Login - Skriv in användarnamn och lösenord</h3>
+							<p class='centercol'>$this->message</p>
+							<span class='loginbox' style='white-space: nowrap'>Namn:</span> <input type='text' class='loginbox' name='$this->username' value='" . $this->getInputUsername() . "'>
+							<span class='loginbox' style='white-space: nowrap'>Lösenord:</span> <input type='password' class='loginbox' name='$this->password'><br> 
+							<span class='loginbox' style='white-space: nowrap'>Håll mig inloggad:</span><input type='checkbox' class='loginbox' name='$this->checkbox' value='checked'><br>
+							<button type='submit' class='loginboxbutton' name='button' form='loginForm' value='Submit'>Logga in</button>
+						</div>
 					</form>";
 				
 			}
@@ -229,8 +229,8 @@
 			<div class='divlogin'>
 			$this->welcomemessage
 			<div class='form'>
-			<div class='loginstatus'>$this->loginStatus</div>
-			<p><a href='?register'>Registrera ny användare</a></p>
+			<h3 class='centercol'>$this->loginStatus</h3>
+			<p class='centercol'><a href='?register'>Registrera ny användare</a></p>
 			$contentString
 			</div></div>";
 
@@ -276,7 +276,7 @@
 								</ul>
 						</ul>
 					</nav>
-					<h2 class='pmessage'>$this->loginStatus</h2>
+					<h2 class='pstatus'>$this->loginStatus</h2>
 				$contentString
 				
 				</div>";
@@ -302,23 +302,22 @@
 			}
 			else 
 			{
-					$this->welcomemessage = "<h1 class='h1welcome'>Välkommen till Music-Live Review</h1>
+					$this->welcomemessage = "<h1 class='h1welcome'>Välkommen till MetalGenre.se</h1>
 					<h2 class='h2welcome'>Logga in för att se menyn. Utan konto? Registrera dig och logga in.</h2>
-					<div class='divwelcome'>Musik Live Review handlar om att sätta betyg på livespelningar med band, det är ett lätt att se på vilken livespelning som ett band presterar bäst.
-					När du loggat in kan du lägga till livespelningar,band och koppla band till livespelningar. Du kan även Lägga till, editera och ta bort betyg pålivespelningar med band.</div>";
-				
-					// ...annars visas inloggningssidan.
+					<div class='divwelcome'>MetalGenre handlar om att lägga till, editera och ta bort betyg på album med band. Samt lägga till, editera och ta bort genrer som man själv har skapat. Går att lägga till band och album.
+					När du loggat in kan du se meny med de olika alternativen.</div>";
 					$this->loginStatus = "Ej inloggad";
+
 					$contentString = 
 					"<form id='loginForm' method=post action='?login'>
-						<fieldset>
-							<legend class='legendgradient'>Login - Skriv in användarnamn och lösenord</legend>
-							$this->message
-							<span class='spangradient' style='white-space: nowrap'>Namn:</span> <input type='text' name='$this->username' value='" . $this->getRegisterUsername() . "'>
-							<span class='spangradient' style='white-space: nowrap'>Lösenord:</span> <input type='password' name='$this->password'> 
-							<input type='checkbox' name='$this->checkbox' value='checked'>Håll mig inloggad:
-							<button type='submit' name='button' form='loginForm' value='Submit'>Logga in</button>
-						</fieldset>
+						<div>
+							<h3 class='centercol'>Login - Skriv in användarnamn och lösenord</h3>
+							<p class='centercol'>$this->message</p>
+							<span class='loginbox' style='white-space: nowrap'>Namn:</span> <input type='text' class='loginbox' name='$this->username' value='" . $this->getCreateInputUsername() . "'>
+							<span class='loginbox' style='white-space: nowrap'>Lösenord:</span> <input type='password' class='loginbox' name='$this->password'><br> 
+							<span class='loginbox' style='white-space: nowrap'>Håll mig inloggad:</span><input type='checkbox' class='loginbox' name='$this->checkbox' value='checked'><br>
+							<button type='submit' class='loginboxbutton' name='button' form='loginForm' value='Submit'>Logga in</button>
+						</div>
 					</form>";
 				
 			}
@@ -326,8 +325,8 @@
 			$HTMLbody = "<div class='divlogin'>
 			$this->welcomemessage
 			<div class='form'>
-			<div class='loginstatus'>$this->loginStatus</div>
-			<p><a href='?register'>Registrera ny användare</a></p>
+			<h3 class='centercol'>$this->loginStatus</h3>
+			<p class='centercol'><a href='?register'>Registrera ny användare</a></p>
 			$contentString
 			</div></div>";
 			
@@ -351,23 +350,23 @@
 			}else{
 
 					// visa registreringssidan.
-					$this->loginStatus = "Ej inloggad, Registrerar användare";
+					$this->loginStatus = "Ej inloggad - Registrerar användare";
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldregister'>
-							<legend>Registrera ny användare - Skriv in användarnamn och lösenord</legend>
-							$this->message
-							<span style='white-space: nowrap'>Namn:</span><br> <input type='text' name='$this->createusername' value='". strip_tags($_POST[$this->createusername]) ."'><br>
-							<span style='white-space: nowrap'>Lösenord:</span><br> <input type='password' name='$this->createpassword'><br>
-							<span style='white-space: nowrap'>Repetera Lösenord:</span><br> <input type='password' name='$this->repeatpassword'><br>
-							<span style='white-space: nowrap'>Skicka:</span> <input type='submit' name='$this->createuserbutton'  value='Registrera'>
-						</fieldset>
+						<div class='divreg'>
+							<h3 class='centercol'>Registrera ny användare - Skriv in användarnamn och lösenord</h3>
+							<p class='centercol'>$this->message</p>
+							<span class='regbox' style='white-space: nowrap'>Namn:</span><br> <input class='regbox' type='text' name='$this->createusername' value='". strip_tags($_POST[$this->createusername]) ."'><br>
+							<span class='regbox' style='white-space: nowrap'>Lösenord:</span><br> <input class='regbox' type='password' name='$this->createpassword'><br>
+							<span class='regbox' style='white-space: nowrap'>Repetera Lösenord:</span><br> <input class='regboxbutton'  type='password' name='$this->repeatpassword'><br>
+							<input type='submit' class='regboxbutton' name='$this->createuserbutton'  value='Registrera'>
+						</div>
 					</form>";
 
 					$HTMLbody = "<div class='divregister'>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>$this->loginStatus</h2>
+					<h2 class='centercol'>$this->loginStatus</h2>
+					<p class='centercol'><a href='?login'>Tillbaka</a></p>
 					$contentString<br>
 					</div>";
 
@@ -435,11 +434,22 @@
 			// Är inte användarnamnet satt skickas en tomsträng med.Tilldelad kod.
 			return "";
 		}
+
+		public function getCreateInputUsername()
+		{
+			if(isset($_POST[$this->createusername]))
+			{
+				return $_POST[$this->createusername];
+			}
+			
+			// Är inte användarnamnet satt skickas en tomsträng med.Tilldelad kod.
+			return "";
+		}
 		
 		// Visar eventuella meddelanden.Tilldelad kod.
 		public function showMessage($message)
 		{
-			$this->message = "<p>" . $message . "</p>";
+			$this->message = $message;
 		}
 		
 		// Visar login-meddelande.Tilldelad kod.

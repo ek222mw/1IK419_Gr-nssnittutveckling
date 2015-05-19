@@ -82,8 +82,8 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Välj genre att ta bort</legend>
+						<div class='diveditgenre'>
+							<h3>Välj genre att ta bort</h3>
 							$this->message
 							<select name='dropdownpickdeletegenre'>";
 
@@ -95,14 +95,14 @@
 										 
 								$contentString .= "</select>
 
-							<span style='white-space: nowrap'></span> <input type='submit' name='$this->choosedeletegenrebutton'  value='Välj genre'>
-						</fieldset>
+							<input type='submit' name='$this->choosedeletegenrebutton'  value='Välj genre'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Ta bort Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenter'>Ta bort Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -136,8 +136,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -150,10 +151,10 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Välj genre att ta bort</legend>
+						<div class='diveditgenre'>
+							<h3 class='hcolcentereditgenre'>Välj genre att ta bort</h3>
 							$this->message
-							<select name='dropdownpickdeletegenre'>";
+							<select class='formtexteditgenre' name='dropdownpickdeletegenre'>";
 
 								foreach($fetchgenrelist->toArray() as $choosedelete)
 								{
@@ -163,14 +164,14 @@
 										 
 								$contentString .= "</select>
 
-							<span style='white-space: nowrap'></span> <input type='submit' name='$this->choosedeletegenrebutton'  value='Välj genre'>
-						</fieldset>
+							 <input type='submit' class='formtexteditgenre' name='$this->choosedeletegenrebutton'  value='Välj genre'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Ta bort Genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterchedit'>Ta bort Genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -204,8 +205,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 
@@ -218,26 +220,26 @@
 					$contentString = 
 					 "
 					<form method=post >
-						<fieldset class='fieldaddband'>
-							<legend>Ta bort genre</legend>
+						<div class='diveditgenre'>
+							<h3 class='hcolcenterchdeletegenre'>Ta bort genre</h3>
 							$this->message";
 
 								foreach($fetchgenrelist->toArray() as $choosedelete)
 								{
 									
-									$contentString.= "<span style='white-space: nowrap'>Genre:</span><p name='$this->deletegenre' >".$choosedelete->getName() ."</p>";
+									$contentString.= "<h4 class='formtextchdeletegenre' style='white-space: nowrap'>Genre:</h4><p class='formtextchdeletegenre' name='$this->deletegenre' >".$choosedelete->getName() ."</p>";
 								}
 								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->deleteid' value='$name'><br>";
 										 
 								
-							$contentString .="<span style='white-space: nowrap'></span> <input type='submit' name='$this->deletegenrebutton'  value='Ta bort'>
-						</fieldset>
+							$contentString .="<span class='formtextchdeletegenre' style='white-space: nowrap'></span> <input type='submit' name='$this->deletegenrebutton'  value='Ta bort'>
+						</div>
 					</form>";
 
-					$HTMLbody = "<div class='divaddband'>
-					<h1>Ta bort genre</h1>
-					<p><a href='?login'>Tillbaka</a></p>
-					<h2>Meny</h2>
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterdeletegenre'>Ta bort genre</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -271,8 +273,9 @@
 								</ul>
 						</ul>
 					</nav>
-					$contentString<br>
-					</div>";
+					
+					</div>
+					$contentString";
 
 					$this->echoHTML($HTMLbody);
 

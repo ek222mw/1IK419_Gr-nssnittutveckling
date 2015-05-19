@@ -99,7 +99,7 @@
 							 
 
 			$HTMLbody = "<div class='divmenu'>
-			<h1 class='hcenterlong'>Editera betyg på album</h1>
+			<h1 class='hcenterlonggrade'>Editera betyg på album</h1>
 			<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 			<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -153,20 +153,23 @@
 				
 			$contentString = "
 			<form method=post >
-			<legend>Editera betyg</legend><br>$this->message";
+			$this->message";
 			foreach($editgradelist->toArray() as $editgrade)
 			{
 							 	
 				$contentString .= "
-				<fieldset class='fieldchoseneditrating'><br><span class='spangradient' style='white-space: nowrap'>Album:</span>";
-				$contentString.= "<p class='pgradient'>".$editgrade->getAlbum()."</p>";
-				$contentString .= "<span class='spangradient' style='white-space: nowrap'>Betyg:</span>";
-				$contentString.="<p class='pgradient'>".$editgrade->getGrade()."</p>";
+				<div class='diveditgenre'>
+				<h3 class='hcolcenterdeletegenre'>Editera betyg</h3>
+				<span class='hcolcenterdeletegenre' style='white-space: nowrap'>Album:</span>
+				";
+				$contentString.= "<p class='hcolcenterdeletegenre'>".$editgrade->getAlbum()."</p>";
+				$contentString .= "<span class='hcolcenterdeletegenre' style='white-space: nowrap'>Betyg:</span>";
+				$contentString.="<p class='hcolcenterdeletegenre'>".$editgrade->getGrade()."</p>";
 				$contentString.= "<input type='hidden' name='$this->pickedid' value='". $editgrade->getID() ."'>";	
 			}
 
-			$contentString .= "<span class='spangradient' style='white-space: nowrap'>Nytt betyg:</span><br>";
-			$contentString.= "<select name='dropdownneweditgrade'>";
+			$contentString .= "<span class='hcolcenterdeletegenre' style='white-space: nowrap'>Nytt betyg:</span><br>";
+			$contentString.= "<select class='hcolcenterdeletegenre' name='dropdownneweditgrade'>";
 
 			foreach($gradelist->toArray() as $grade)
 			{
@@ -176,14 +179,14 @@
 			}
 
 			$contentString.="</select>";
-			$contentString.= "<input type='submit' name='$this->editgradebutton'  value='Editera Betyg'>";
-			$contentString .= "</fieldset>";
+			$contentString.= "<input type='submit' class='hcolcenterdeletegenre' name='$this->editgradebutton'  value='Editera Betyg'>";
+			$contentString .= "</div>";
 			$contentString .= "</form>";
 
-			$HTMLbody = "<div class='divchoseneditrating'>
-			<h1>Editera betyg till vald spelning med band</h1>
-			<p><a href='?editrating'>Tillbaka</a></p>
-			<h2>Meny</h2>
+			$HTMLbody = "<div class='divmenu'>
+			<h1 class='hcenterlong'>Editera betyg på valt album</h1>
+			<p class='pcenter'><a href='?editrating'>Tillbaka</a></p>
+			<h2 class='h2menu'>Meny</h2>
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -217,8 +220,9 @@
 								</ul>
 						</ul>
 					</nav>
-			$contentString
-			</div>";
+			
+			</div>
+			$contentString";
 
 			$this->echoHTML($HTMLbody);
 		}
@@ -226,7 +230,7 @@
 		//Lägger in, inparameterns sträng i privata variabeln message som sedan skickas till formulären.
 		public function showMessage($message)
 		{
-			$this->message = "<p>" . $message . "</p>";
+			$this->message = "<p class='messagecenter'>" . $message . "</p>";
 		}
 
 		//Lägger in lyckat editera betyg meddelande i funktionen showMessage.

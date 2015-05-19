@@ -283,7 +283,7 @@
 
 			public function showMessage($message)
 			{
-				$this->message = "<p>" . $message . "</p>";
+				$this->message = "<p class='centercol'>" . $message . "</p>";
 			}
 
 			public function successfulEditGenre()
