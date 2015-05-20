@@ -6154,12 +6154,14 @@ legend {
 
 .divmenu{
 
-  margin-left: 30%;
+  margin-left:6em;
+
 }
 nav ul ul {
  
   display: none;
   z-index: 10;
+  width:15em;
 }
 
 nav ul li:hover > ul {
@@ -6172,10 +6174,11 @@ nav ul {
   background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%); 
   box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
   padding: 0 2%;
-  border-radius: 1%;  
+  border-radius: 5px;  
   list-style: none;
   position: relative;
   display: inline-table;
+  width:300px;
   
   
 }
@@ -6199,7 +6202,7 @@ nav ul li:hover a {
 }
   
 nav ul li a {
-  display: block; padding: 3% 5%;
+  display: block; padding: 25px 13px;
   color: #757575; text-decoration: none;
   
 }
@@ -6418,8 +6421,8 @@ button[type="submit"]:active {
   background-color: #4B0000;
   border-radius: 2%;
   margin-right:auto;
-  margin-left:30%;
-  width:39%;
+  margin-left:6em;
+  width:300px;
   padding-bottom:1%;
 }
 
@@ -6462,8 +6465,8 @@ button[type="submit"]:active {
   background-color: #4B0000;
   border-radius: 2%;
   margin-right:auto;
-  margin-left:30%;
-  width:38.5%;
+  margin-left:6em;
+  width:300px;
   padding-bottom:1%;
 }
 
@@ -6527,8 +6530,8 @@ button[type="submit"]:active {
   background-color: #4B0000;
   border-radius: 2%;
   margin-right:auto;
-  margin-left:30%;
-  width:38.5%;
+  margin-left:6em;
+  width:300px;
   padding-bottom:1%;
 }
 .divshowgenre{

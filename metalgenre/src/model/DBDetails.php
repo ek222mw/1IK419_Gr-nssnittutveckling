@@ -654,7 +654,7 @@
 				$result = $query -> fetchall();
 				$albums = new AlbumList();
 				foreach ($result as $albumdb) {
-					$album = new Album($albumdb[self::$albumname],$albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons]);
+					$album = new Album($albumdb[self::$albumname],$albumdb[self::$albumid], $albumdb[self::$albumcontents], $albumdb[self::$albumpersons], $albumdb[self::$imgpath]);
 					$albums->add($album);
 
 				}

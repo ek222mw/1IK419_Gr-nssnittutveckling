@@ -6160,6 +6160,7 @@ nav ul ul {
  
   display: none;
   z-index: 10;
+  width:15em;
 }
 
 nav ul li:hover > ul {
@@ -6176,7 +6177,7 @@ nav ul {
   list-style: none;
   position: relative;
   display: inline-table;
-  width:56%;
+  width:527px;
 }
 nav ul:after {
     content: ""; clear: both; display: block;
@@ -6201,7 +6202,7 @@ nav ul li:hover a {
   
 nav ul li a {
   display: block;
-  padding: 25px 1.7em;
+  padding: 25px 39px;
   
   color: #757575; text-decoration: none;
 }
@@ -6420,7 +6421,7 @@ button[type="submit"]:active {
   border-radius: 2%;
   margin-right:auto;
   margin-left:30%;
-  width:39%;
+  width:527px;
   padding-bottom:1%;
 }
 
