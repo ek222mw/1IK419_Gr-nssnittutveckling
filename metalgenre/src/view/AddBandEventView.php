@@ -237,6 +237,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -300,6 +301,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -360,6 +362,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -386,7 +389,7 @@
 							<h3 class='hcolcenterbandtogenre'>Lägga till band till genre</h3>
 							<p class='formtextbandtogenre'>$this->message</p>
 							<span style='white-space: nowrap' class='formtextbandtogenre'>Genre:</span><br>
-							 <select class='formtextbandtogenre' name='$this->dropdownpickgenre'>";
+							 <select class='formtextbandtogenreinput' name='$this->dropdownpickgenre'>";
 							 foreach($genrelist->toArray() as $genre)
 							 {
 							 	$contentString.= "<option value='". $genre->getName()."'>".$genre->getName()."</option>";
@@ -395,7 +398,7 @@
 							 $contentString .= "</select>
 							 <br>
 							<span class='formtextbandtogenre' style='white-space: nowrap'>Band:</span><br>
-							<select class='formtextbandtogenre' name='$this->dropdownpickband'>";
+							<select class='formtextbandtogenreinput' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -443,6 +446,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -467,7 +471,7 @@
 							<h3 class='hcolcenterbandtoalbum'>Lägga till band till album</h3>
 							<p class='formtextbandtoalbum'>$this->message</p>
 							<span style='white-space: nowrap' class='formtextbandtoalbum'>Album:</span><br>
-							 <select class='formtextbandtoalbum' name='$this->dropdownpickalbum'>";
+							 <select class='formtextbandtoalbuminput' name='$this->dropdownpickalbum'>";
 							 foreach($albumlist->toArray() as $album)
 							 {
 							 	$contentString.= "<option value='". $album->getName()."'>".$album->getName()."</option>";
@@ -476,7 +480,7 @@
 							 $contentString .= "</select>
 							 <br>
 							<span class='formtextbandtoalbum' style='white-space: nowrap'>Band:</span><br>
-							<select class='formtextbandtoalbum' name='$this->dropdownpickband'>";
+							<select class='formtextbandtoalbuminput' name='$this->dropdownpickband'>";
 							 foreach($bandlist->toArray() as $band)
 							 {
 							 	$contentString.= "<option value='". $band->getName()."'>".$band->getName()."</option>";
@@ -524,6 +528,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>

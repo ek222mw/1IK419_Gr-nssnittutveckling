@@ -132,6 +132,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -169,7 +170,7 @@
 			}
 
 			$contentString .= "<span class='hcolcenterdeletegenre' style='white-space: nowrap'>Nytt betyg:</span><br>";
-			$contentString.= "<select class='hcolcenterdeletegenre' name='dropdownneweditgrade'>";
+			$contentString.= "<select class='hcolcenterdeletegenreinput' name='dropdownneweditgrade'>";
 
 			foreach($gradelist->toArray() as $grade)
 			{
@@ -217,6 +218,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>

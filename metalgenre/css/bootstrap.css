@@ -6460,6 +6460,17 @@ button[type="submit"]:active {
 
 
 }
+
+.centertext{
+  margin-left: 180px;
+}
+
+.centertextinput{
+  margin-left: 180px;
+  width:200px;
+}
+
+
 .pmessage{
   
   margin-left: 19%;
@@ -6500,7 +6511,7 @@ button[type="submit"]:active {
   position: relative;
   margin-bottom: 1%;
   display:inline-block;
-  width:39%;
+  width:525px;
 
   float:left;
   height: 60em;
@@ -6517,11 +6528,18 @@ button[type="submit"]:active {
   position: relative;
   margin-bottom: 1%;
   display:inline-block;
-  width:15%;
+  width:200px;
 
   float:left;
  
   
+ 
+}
+
+.hcolcenterallinput
+{
+  padding-top: 1%;
+  margin-left:25%;
  
 }
 
@@ -6583,9 +6601,20 @@ button[type="submit"]:active {
   
 }
 
+.formtexteditgenreinput{
+  margin-left:27%;
+  
+}
+
+.hcolcenterdeletegenreinput
+{
+  padding-top: 1%;
+  margin-left:35%;
+}
+
 .editgradeform{
   
-  width:16.1%;
+  width:220px;
   display:inline-block;
  
   
@@ -6597,7 +6626,7 @@ button[type="submit"]:active {
   border-radius: 2%;
   margin-right:auto;
   margin-left:30%;
-  width:38.5%;
+  width:527px;
   padding-bottom:1%;
 }
 .divshowgenre{
@@ -6638,7 +6667,7 @@ button[type="submit"]:active {
 }
 
 .hcenterxlong{
- margin-left:-4.5%;
+ margin-left:5%;
 }
 
 .hcenterlonggrade{
@@ -6743,6 +6772,11 @@ button[type="submit"]:active {
   margin-left:25%;
 }
 
+.formtextbandtoalbuminput{
+  margin-left:25%;
+}
+
+
 .formtextalbum{
   margin-left:9%;
 }
@@ -6756,7 +6790,13 @@ button[type="submit"]:active {
 
 .formtextarea{
   margin-left:12%;
-  width:32.4%;
+  width:170px;
+
+}
+
+.formtextbandtogenreinput{
+  margin-left:25%;
+  
 
 }
 

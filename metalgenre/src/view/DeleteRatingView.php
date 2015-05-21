@@ -96,6 +96,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>

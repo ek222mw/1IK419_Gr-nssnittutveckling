@@ -202,7 +202,7 @@
 			if($this->model->checkLoginStatus())
 			{				
 				// ...visa användarsidan...Tilldelad kod.
-				$contentString = "<p class='pmessage'>$this->message</p><p class='plogout'><a href='?logout'>Logga ut</a></p>";
+				$contentString = "<p class='centercol'>$this->message</p><p class='centercol'><a href='?logout'>Logga ut</a></p>";
 				$this->loginStatus = $this->model->getLoggedInUser() . " är inloggad";
 			}
 			else 
@@ -245,10 +245,11 @@
 				$HTMLbody = "
 				
 				
+				<h2 class='centercol'>Meny</h2>
 				<div class='divmenu'>
 				
 
-				<h2 class='h2menu'>Meny</h2>
+				
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -283,10 +284,12 @@
 								</ul>
 						</ul>
 					</nav>
-					<h2 class='pstatus'>$this->loginStatus</h2>
-				$contentString
+					
 				
-				</div>";
+				
+				</div>
+				<h2 class='centercol'>$this->loginStatus</h2>
+				$contentString";
 			}
 
 			$this->echoHTML($HTMLbody);

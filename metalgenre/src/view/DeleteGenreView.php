@@ -83,9 +83,9 @@
 					 "
 					<form method=post >
 						<div class='diveditgenre'>
-							<h3>Välj genre att ta bort</h3>
+							<h3 class='hcolcentereditgenre'>Välj genre att ta bort</h3>
 							$this->message
-							<select name='dropdownpickdeletegenre'>";
+							<select class='formtexteditgenreinput' name='dropdownpickdeletegenre'>";
 
 								foreach($fetchgenrelist->toArray() as $choosedelete)
 								{
@@ -95,12 +95,12 @@
 										 
 								$contentString .= "</select>
 
-							<input type='submit' name='$this->choosedeletegenrebutton'  value='Välj genre'>
+							<input type='submit' class='formtexteditgenre' name='$this->choosedeletegenrebutton'  value='Välj genre'>
 						</div>
 					</form>";
 
 					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcenter'>Ta bort Genre</h1>
+					<h1 class='hcenterchedit'>Ta bort Genre</h1>
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -133,6 +133,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -154,7 +155,7 @@
 						<div class='diveditgenre'>
 							<h3 class='hcolcentereditgenre'>Välj genre att ta bort</h3>
 							$this->message
-							<select class='formtexteditgenre' name='dropdownpickdeletegenre'>";
+							<select class='formtexteditgenreinput' name='dropdownpickdeletegenre'>";
 
 								foreach($fetchgenrelist->toArray() as $choosedelete)
 								{
@@ -202,6 +203,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -229,7 +231,7 @@
 									
 									$contentString.= "<h4 class='formtextchdeletegenre' style='white-space: nowrap'>Genre:</h4><p class='formtextchdeletegenre' name='$this->deletegenre' >".$choosedelete->getName() ."</p>";
 								}
-								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->deleteid' value='$name'><br>";
+								$contentString.= "<span style='white-space: nowrap'></span><input type='hidden' name='$this->deleteid' value='$name'>";
 										 
 								
 							$contentString .="<span class='formtextchdeletegenre' style='white-space: nowrap'></span> <input type='submit' name='$this->deletegenrebutton'  value='Ta bort'>
@@ -270,6 +272,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -283,7 +286,7 @@
 
 			public function showMessage($message)
 			{
-				$this->message = "<p>" . $message . "</p>";
+				$this->message = "<p class='hcolcentereditgenre'>" . $message . "</p>";
 			}
 
 			public function successfulDeleteGenre()

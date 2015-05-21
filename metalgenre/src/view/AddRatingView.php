@@ -98,10 +98,10 @@
 					$contentString = "
 					<form method=post >
 					<div class='diveditgenre'>
-					<h3 class='centercol'>Lägga till nytt betyg till album med följande band</h3>
+					<h3 class='centercol'>Lägga till nytt betyg till album</h3>
 					$this->message
 					<p class='centercol'>Album:</p>
-					<select class='hcolcenterall' name='dropdownpickalbum'>";
+					<select class='hcolcenterallinput' name='dropdownpickalbum'>";
 
 					foreach($albumbandlist->toArray() as $album)
 					{
@@ -110,7 +110,7 @@
 							 
 					$contentString .= "</select><br>";
 					$contentString .= "<p class='centercol' >Betyg:</p>
-					<select class='hcolcenterall' name='$this->dropdownpickgrade'>";
+					<select class='hcolcenterallinput' name='$this->dropdownpickgrade'>";
 
 					foreach($gradelist->toArray() as $grade)
 					{
@@ -122,7 +122,7 @@
 					$contentString .= "</div></form>";
 
 					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcenterxlong'>Lägg till betyg till valt album med band</h1>
+					<h1 class='hcenterxlong'>Lägg till betyg till valt album</h1>
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -184,24 +184,26 @@
 					<table summary='This table contains contact form fields.'' width='100%' cellpadding='0' cellspacing='0'>
 					 <tr id='trstyle'>
 					  <td id='tdstyle'>
-					  <label for='subject'>Subject: <span style='color: #FF0000'>*</span></label>
-					  <input name='subject' type='text' id='subject' size='20' maxlength='100' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required' />
+					  <label class='centertext' for='subject'>Ämne: <span style='color: #FF0000'>*</span></label><br>
+					  <input class='centertextinput' name='subject' type='text' id='subject' size='20' maxlength='100' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required' />
 					  </td>
 					 </tr>
 					 <tr id='trstyle'>
 					  <td id='tdstyle'>
-					  <label for='email' >E-mail Address: <span style='color: #FF0000'>*</span></label>
-					  <input name='email' type='email' id='email' size='20' maxlength='100' required='required' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' />
+					  <label class='centertext' for='email' >E-mail Adress: <span style='color: #FF0000'>*</span></label><br>
+					  <input class='centertextinput' name='email' type='email' id='email' size='20' maxlength='100' required='required' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' />
 					  </td>
 					 </tr>
 					 <tr id='trstyle'>
 					  <td id='tdstyle'>
-					  <label for='q1' >Your name: <span style='color: #FF0000'>*</span></label> <input name='q1' id='q1' type='text' value='Enter your name here' size='20' maxlength='40' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required'/>
+					  <label class='centertext' for='q1' >Ditt namn: <span style='color: #FF0000'>*</span></label><br>
+					   <input class='centertextinput' name='q1' id='q1' type='text' value='Skriv in ditt namn här.' size='20' maxlength='40' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required'/>
 					  </td>
 					 </tr>
 					 <tr id='trstyle'>
 					  <td id='tdstyle'>
-					  <label for='q3' >Your Question: <span style='color: #FF0000'>*</span></label> <textarea name='q3' id='q3'  required='required'>Enter your question here.</textarea>
+					  <label class='centertext' for='q3' >Din fråga: <span style='color: #FF0000'>*</span></label><br>
+					   <textarea class='centertextinput' name='q3' id='q3'  required='required'>Skriv in din fråga här.</textarea>
 					  </td>
 					 </tr>
 					<tr id='trstyle'>
@@ -213,14 +215,14 @@
 					  <td id='tdstyle'>
 					   <input name='user' type='hidden' id='user' value='krochen' />
 					   <input name='formid' type='hidden' id='formid' value='414464' />
-					   <input name='submit' type='submit' value='Submit'  />
-					   <input name='reset' type='reset' value='Reset'  />
-					   <input type='button' value='Print' onClick='window.print()' />
+					   <input class='centertext'name='submit' type='submit' value='Skicka'  />
+					   <input  name='reset' type='reset' value='Återställ'  />
+					   <input  type='button' value='Skriv ut' onClick='window.print()' /><br><br>
 					 </td>
 					 </tr>
 					<tr style='margin: 0; padding: 0;'>
 					  <td style='background-color: #bac4cc; padding: 5px; clear: left; margin: 0;'>
-					<span style='color: #FF0000'>*</span> <span style='font-family: Arial; color: #000000; font-size: 14px;'>Required</span> <span style='float: right; font-family: Arial; color: #000000; font-size: 14px;'><a href='http://www.mycontactform.com' target='_blank' title='Link to myContactForm.com'>Free Contact Form</a></span> </td>
+					<span style='color: #FF0000'>*</span> <span style='font-family: Arial; color: #000000; font-size: 14px;'>Nödvändiga</span> <span style='float: right; font-family: Arial; color: #000000; font-size: 14px;'><a href='http://www.mycontactform.com' target='_blank' title='Link to myContactForm.com'>Free Contact Form</a></span> </td>
 					 </tr>
 					</table>
 					</form>
@@ -230,8 +232,10 @@
 
 					
 
-					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcenterxlong'>Kontaktformulär</h1>
+					$HTMLbody = "
+					<h1 class='centercol'>Kontaktformulär</h1>
+					<div class='divmenu'>
+					
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -264,6 +268,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -350,6 +355,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -417,6 +423,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -481,6 +488,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -537,8 +545,10 @@
 
 					
 
-					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcentershowgenre'>$genre</h1>
+					$HTMLbody = "
+					<h1 class='centercol'>$genre</h1>
+					<div class='divmenu'>
+					
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -571,6 +581,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -625,8 +636,10 @@
 
 					
 
-					$HTMLbody = "<div class='divmenu'>
-					<h1 class='hcentershowgenre'>$band</h1>
+					$HTMLbody = "
+					<h1 class='centercol'>$band</h1>
+					<div class='divmenu'>
+					
 					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
 					<h2 class='h2menu'>Meny</h2>
 				<nav>
@@ -659,6 +672,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>

@@ -85,7 +85,7 @@
 						<div class='diveditgenre'>
 							<h3 class='hcolcentereditgenre'>Välj genre att editera </h3>
 							$this->message
-							<select class='formtexteditgenre' name='dropdownpickeditgenre'>";
+							<select class='formtexteditgenreinput' name='dropdownpickeditgenre'>";
 
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
@@ -154,7 +154,7 @@
 						<div class='diveditgenre'>
 							<h3 class='hcolcentereditgenre'>Välj genre att editera </h3>
 							$this->message
-							<select class='formtexteditgenre' name='dropdownpickeditgenre'>";
+							<select class='formtexteditgenreinput' name='dropdownpickeditgenre'>";
 
 								foreach($fetchgenrelist->toArray() as $chooseedit)
 								{
@@ -270,6 +270,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>
@@ -283,7 +284,7 @@
 
 			public function showMessage($message)
 			{
-				$this->message = "<p class='centercol'>" . $message . "</p>";
+				$this->message = "<p class='hcolcentereditgenre'>" . $message . "</p>";
 			}
 
 			public function successfulEditGenre()
