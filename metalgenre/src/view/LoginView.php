@@ -21,6 +21,7 @@
 		private $editgenre = "editgenre";
 		private $deletegenre = "deletegenre";
 		private $editrating = "editrating";
+		private $showContact = "showcontact";
 		private $login = "login";
 		private $createuserbutton = "createuserbutton";
 		private $createusername = "createusername";
@@ -107,6 +108,11 @@
 		public function didUserPressAddAlbum()
 		{
 			return isset($_GET[$this->addalbum]);
+		}
+
+		public function didUserPressContact()
+		{
+			return isset($_GET[$this->showContact]);
 		}
 
 
@@ -273,6 +279,7 @@
 								<ul>
 									<li><a href='?showgenres'>Visa genres</a></li>
 									<li><a href='?showevents'>Visa Album med betyg</a></li>
+									<li><a href='?showcontact'>Visa Kontaktformulär</a></li>
 								</ul>
 						</ul>
 					</nav>

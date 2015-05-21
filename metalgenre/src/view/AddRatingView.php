@@ -166,6 +166,115 @@
 			
 			}
 
+			//Visar lägga till betyg formuläret.
+		public function ShowContact(){
+
+					
+	
+					$contentString = "
+					<form method=post >
+					<div class='diveditgenre'>
+					<h3 class='centercol'>Kontaktformulär</h3>
+					";
+
+
+					$contentString .= "
+
+					<form name='contactForm' id='contactForm' method='post'  action='http://www.mycontactform.com/sendform/sendform.php'>
+					<table summary='This table contains contact form fields.'' width='100%' cellpadding='0' cellspacing='0'>
+					 <tr id='trstyle'>
+					  <td id='tdstyle'>
+					  <label for='subject'>Subject: <span style='color: #FF0000'>*</span></label>
+					  <input name='subject' type='text' id='subject' size='20' maxlength='100' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required' />
+					  </td>
+					 </tr>
+					 <tr id='trstyle'>
+					  <td id='tdstyle'>
+					  <label for='email' >E-mail Address: <span style='color: #FF0000'>*</span></label>
+					  <input name='email' type='email' id='email' size='20' maxlength='100' required='required' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' />
+					  </td>
+					 </tr>
+					 <tr id='trstyle'>
+					  <td id='tdstyle'>
+					  <label for='q1' >Your name: <span style='color: #FF0000'>*</span></label> <input name='q1' id='q1' type='text' value='Enter your name here' size='20' maxlength='40' style='font-family: Arial; font-size: 14px; color: #000000; background-color: #FFFFFF; border: 1px solid #000000; padding: 2px;' required='required'/>
+					  </td>
+					 </tr>
+					 <tr id='trstyle'>
+					  <td id='tdstyle'>
+					  <label for='q3' >Your Question: <span style='color: #FF0000'>*</span></label> <textarea name='q3' id='q3'  required='required'>Enter your question here.</textarea>
+					  </td>
+					 </tr>
+					<tr id='trstyle'>
+					  <td id='tdstyle'>
+					<hr style='color: #D8D8D8; background-color: #D8D8D8; height: 1px;' />
+					 </td>
+					 </tr>
+					<tr id='trstyle'>
+					  <td id='tdstyle'>
+					   <input name='user' type='hidden' id='user' value='krochen' />
+					   <input name='formid' type='hidden' id='formid' value='414464' />
+					   <input name='submit' type='submit' value='Submit'  />
+					   <input name='reset' type='reset' value='Reset'  />
+					   <input type='button' value='Print' onClick='window.print()' />
+					 </td>
+					 </tr>
+					<tr style='margin: 0; padding: 0;'>
+					  <td style='background-color: #bac4cc; padding: 5px; clear: left; margin: 0;'>
+					<span style='color: #FF0000'>*</span> <span style='font-family: Arial; color: #000000; font-size: 14px;'>Required</span> <span style='float: right; font-family: Arial; color: #000000; font-size: 14px;'><a href='http://www.mycontactform.com' target='_blank' title='Link to myContactForm.com'>Free Contact Form</a></span> </td>
+					 </tr>
+					</table>
+					</form>
+
+
+					";
+
+					
+
+					$HTMLbody = "<div class='divmenu'>
+					<h1 class='hcenterxlong'>Kontaktformulär</h1>
+					<p class='pcenter'><a href='?login'>Tillbaka</a></p>
+					<h2 class='h2menu'>Meny</h2>
+				<nav>
+						<ul>
+							<li><a href='#'>Lägg till</a>
+								<ul>
+										<li><a href='?addband'>Lägg till band</a></li>
+										<li><a href='?addgenre'>Lägg till genre</a></li>
+										<li><a href='?addalbum'>Lägg till album</a></li>
+										<li><a href='?addbandtoevent'>Lägg till band till genre</a></li>
+										<li><a href='?addbandtoalbum'>Lägg till band till album</a></li>
+										<li><a href='?addrating'>Lägg till betyg på album</a></li>
+								</ul>
+							</li>		
+							<li><a href='#'>Editera</a>
+								<ul>
+									<li><a href='?editrating'>Editera betyg på album</a></li>
+									<li><a href='?editgenre'>Editera genre</a></li>
+
+								
+								</ul>
+							</li>
+							<li><a href='#'>Ta bort</a>
+								<ul>
+									<li><a href='?deleterating'>Ta bort betyg på album</a></li>
+									<li><a href='?deletegenre'>Ta bort genre</a></li>
+								</ul>
+							</li>
+							<li><a href='#'>Visa</a>
+								<ul>
+									<li><a href='?showgenres'>Visa genres</a></li>
+									<li><a href='?showevents'>Visa Album med betyg</a></li>
+								</ul>
+						</ul>
+					</nav>
+					
+					</div>
+					$contentString";
+
+					$this->echoHTML($HTMLbody);
+			
+			}
+
 			//Visar vald livespelning för att lägga till betyg till livespelningar med band formulär.
 			public function ShowChosenEventRatingPage(AlbumBandList $albumbandlist, AlbumBandList $bandeventlist, GradeList $gradelist){
 
