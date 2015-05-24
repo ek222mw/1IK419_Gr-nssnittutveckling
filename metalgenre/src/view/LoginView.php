@@ -370,7 +370,7 @@
 							<span class='regbox' style='white-space: nowrap'>Namn:</span><br> <input class='regbox' type='text' name='$this->createusername' value='". strip_tags($_POST[$this->createusername]) ."'><br>
 							<span class='regbox' style='white-space: nowrap'>Lösenord:</span><br> <input class='regbox' type='password' name='$this->createpassword'><br>
 							<span class='regbox' style='white-space: nowrap'>Repetera Lösenord:</span><br> <input class='regboxbutton'  type='password' name='$this->repeatpassword'><br>
-							<input type='submit' class='regboxbutton' name='$this->createuserbutton'  value='Registrera'>
+							<input type='submit' class='regboxbutton1' name='$this->createuserbutton'  value='Registrera'>
 						</div>
 					</form>";
 

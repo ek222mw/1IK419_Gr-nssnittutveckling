@@ -6073,7 +6073,7 @@ button.close {
   margin-right:1%;
   margin-left: 1%;
   padding-left:1%;
-  width:49%;
+  width:670px;
   background-color: #4B0000;
 
 
@@ -6434,7 +6434,7 @@ button[type="submit"]:active {
 
   float:right;
   background-color: #4B0000;
-  width:48%;
+  width:630px;
   border-radius: 2%;
   margin-right: 1%;
 }   
@@ -6576,6 +6576,12 @@ button[type="submit"]:active {
 }
 
 .regboxbutton{
+  left:35%;
+  position: relative;
+  margin-bottom: 1%;
+}
+
+.regboxbutton1{
   left:35%;
   position: relative;
   margin-bottom: 1%;
@@ -6859,7 +6865,7 @@ select{
 .divreg{
   border-radius: 1%;
   
-  width:50%;
+  width:650px;
   background-color: #4B0000;
   margin-left: auto;
   margin-right: auto;
