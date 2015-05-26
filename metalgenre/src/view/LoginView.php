@@ -212,7 +212,7 @@
 					
 				$this->welcomemessage = "<h1 class='h1welcome'>Välkommen till MetalGenre.se</h1>
 				<h2 class='h2welcome'>Logga in för att se menyn. Utan konto? Registrera dig och logga in.</h2>
-				<div class='divwelcome'>MetalGenre handlar om att lägga till, editera och ta bort betyg på album med band. Samt lägga till, editera och ta bort genrer som man själv har skapat. Går att lägga till band och album.
+				<div class='divwelcome'>MetalGenre handlar om att lägga till, editera och ta bort betyg på album. Samt lägga till, editera och ta bort genrer som man själv har skapat. Går även att lägga till band och album m.m.
 				När du loggat in kan du se meny med de olika alternativen.</div>";
 				$this->loginStatus = "Ej inloggad";
 
