@@ -12,6 +12,7 @@
 	require_once("AlbumBandList.php");
 	require_once("AlbumGradeList.php");
 	require_once("FetchGenreList.php");
+	require_once("NewsList.php");
 	
 
 
@@ -56,6 +57,7 @@
 		private static $tblEventBand = "m_eventband";
 		private static $tblSummaryGrade = "m_summarygrade";
 		private static $tblRating = "m_rating";
+		private static $tblNews = "m_news";
 		private static $colId = "id";
 		private static $colusername = "username";
 		private static $colevent = "event";
@@ -873,6 +875,28 @@
 
 				}
 				return $showgenres;
+		}
+
+		public function fetchAllNews()
+		{
+				$db = $this -> connection();
+				$this->dbTable = self::$tblNews;
+				$sql = "SELECT * FROM `$this->dbTable`";
+				
+
+				$query = $db -> prepare($sql);
+				$query -> execute();
+
+				$result = $query -> fetchall();
+				
+				
+				$news = new NewsList();
+				foreach ($result as $newsdb) {
+					$new = new News($newsdb['news'], $newsdb['newsid']);
+					$news->add($new);
+
+				}
+				return $news;
 		}
 
 		public function fetchGenre($genrename)

@@ -193,7 +193,7 @@
 		
 		
 		// Visar logga in sidan.
-		public function showLoginPage()
+		public function showLoginPage(NewsList $newslist)
 		{
 			
 			
@@ -243,13 +243,10 @@
 			if($this->model->checkLoginStatus())
 			{
 				$HTMLbody = "
-				
-				
+				<h2 class='centercol'>$this->loginStatus</h2>
+				$contentString
 				<h2 class='centercol'>Meny</h2>
 				<div class='divmenu'>
-				
-
-				
 				<nav>
 						<ul>
 							<li><a href='#'>Lägg till</a>
@@ -284,12 +281,20 @@
 								</ul>
 						</ul>
 					</nav>
-					
-				
-				
+	
 				</div>
-				<h2 class='centercol'>$this->loginStatus</h2>
-				$contentString";
+				
+				";
+				$HTMLbody .= "
+				<div class='diveditgenre'>
+					<h3 class='centercol'>Nyheter från loudwire.com</h3>
+					";
+
+					foreach($newslist->toArray() as $news)
+					{
+						$HTMLbody .="<p class='centercol'><a href='".$news->getNews()."'>".$news->getNews()."</a></p>";
+					}
+					$HTMLbody .= "</div>";
 			}
 
 			$this->echoHTML($HTMLbody);

@@ -60,12 +60,14 @@
 			}
 			if($this->model->checkLoginStatus() && $this->view->searchForCookies())
 			{
-				$this->view->showLoginPage();
+
+
+				$this->view->showLoginPage($this->db->fetchAllNews());
 			}
 			if($this->model->checkLoginStatus() && !$this->view->searchForCookies())
 			{
 				
-				$this->view->showLoginPage();
+				$this->view->showLoginPage($this->db->fetchAllNews());
 			}
 			
 		}
@@ -76,7 +78,7 @@
 			if(!$this->view->didUserPressRegister() && !$this->view->didUserPressLogin() && !$this->model->checkLoginStatus())
 			{
 				
-				$this->view->showLoginPage();
+				$this->view->showLoginPage($this->db->fetchAllNews());
 			}
 
 			
@@ -134,7 +136,7 @@
 			if(!$this->view->didUserPressLogout() && !$this->model->checkLoginStatus())
 			{
 					
-				$this->view->showLoginPage();
+				$this->view->showLoginPage($this->db->fetchAllNews());
 			}
 
 
